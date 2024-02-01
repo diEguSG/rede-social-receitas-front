@@ -52,7 +52,7 @@ async function cadastro(){
 
     const usuario_valido_json = JSON.stringify(usuario_valido);
     
-    const res = await fetch(`${baseURL}/usuario`,
+    const res = await fetch(`${baseURL}/cadastro`,
     {
         headers: myHeaders,
         method: "POST",
