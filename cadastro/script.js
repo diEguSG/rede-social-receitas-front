@@ -1,4 +1,4 @@
-// import {baseURL} from "../conexao_servidor.js"
+import {baseURL} from "../conexao_servidor.js";
 
 const form = document.querySelector("form");
 
@@ -16,39 +16,10 @@ async function cadastro(){
     const validar_usuario = {
         nome: document.querySelector("#inp-nome").value,
         sobrenome: document.querySelector("#inp-sobrenome").value,
-        email_telefone: document.querySelector("#inp-email-telefone").value,
+        email: document.querySelector("#inp-email").value,
         senha: document.querySelector("#inp-senha").value,
         confirmar_senha: document.querySelector("#inp-confirmar-senha").value
     }
-
-    const usuario_valido = [];
-
-    console.log(validar_usuario.nome.toLowerCase())
-    console.log(validar_usuario.sobrenome.toLowerCase())
-    console.log(validar_usuario.nome.trim())
-    console.log(validar_usuario.sobrenome.trim())
-
-    console.log(validar_usuario.email_telefone.toLowerCase());
-
-
-    let array = [];
-    for(let i = 0; i < validar_usuario.sobrenome.length; i++){
-        
-        let teste = validar_usuario.sobrenome.slice(i);
-        if(teste[0] == " "){
-            let teste2 = teste.slice(1);
-            array.push();
-        }
-    }
-
-    console.log(array)
-    function capitalizeFirstLetter(sobrenome) {
-        console.log(sobrenome.charAt(0).toUpperCase() + sobrenome.slice(1))
-        return sobrenome.charAt(0).toUpperCase() + sobrenome.slice(1);
-    }
-
-    capitalizeFirstLetter(validar_usuario.sobrenome);
-
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
         console.log("Campos em Brancos");   
@@ -58,28 +29,33 @@ async function cadastro(){
         console.log("Senhas Diferentes")
     }
 
-    for(let i = 0; i < 10; i++){
-        if(validar_usuario.email_telefone.includes(i)){
 
-            if(validar_usuario.email_telefone.includes("@")){
-                //console.log("Email")
-                
-            }
-            //console.log("Telefone")
-            
-        }
+    validar_usuario.nome = validar_usuario.nome.toLowerCase();
+    validar_usuario.nome = validar_usuario.nome.trim();
+    validar_usuario.nome = validar_usuario.nome.charAt(0).toUpperCase() + validar_usuario.nome.slice(1)
+    validar_usuario.sobrenome = validar_usuario.sobrenome.toLowerCase();
+    validar_usuario.sobrenome = validar_usuario.sobrenome.trim();
+    validar_usuario.sobrenome = validar_usuario.sobrenome.charAt(0).toUpperCase() + validar_usuario.sobrenome.slice(1)
+    validar_usuario.email = validar_usuario.email.toLowerCase()
+    validar_usuario.email = validar_usuario.email.trim();
+    
+
+    const usuario_valido = {
+        nome: `${validar_usuario.nome} ${validar_usuario.sobrenome}`,
+        email: validar_usuario.email,
+        senha: validar_usuario.senha,
+        id_tipo_usuario: 2,
+        id_situacao_usuario: 1
     }
 
     console.log(usuario_valido);
 
-    const usuario_valido_json = JSON.stringify(usuario_valido)
-
-    // const usuarioJson = JSON.stringify(usuario);
+    const usuario_valido_json = JSON.stringify(usuario_valido);
     
-    // const res = await fetch(`${baseURL}/post`,
-    // {
-    //     headers: myHeaders,
-    //     method: "POST",
-    //     body: usuarioJson
-    // })
+    const res = await fetch(`${baseURL}/usuario`,
+    {
+        headers: myHeaders,
+        method: "POST",
+        body: usuario_valido_json
+    })
 }
