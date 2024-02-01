@@ -16,3 +16,15 @@ btnvermais.addEventListener("click",()=>{
 
 })
 
+
+async function getreceita(){
+    const res = await fetch("http://localhost:3003/receita")
+    const receita = await res.json()
+    console.log(receita)
+    receita.forEach(element => {
+        console.log(element)
+    });
+}
+ getreceita()
+
+
