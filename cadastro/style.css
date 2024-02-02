@@ -84,20 +84,11 @@ button{
     background-color: red;
 }
 
-@keyframes toastAnimation{
-    0%, 100%{
-        position: fixed;
-        top: -100px;
-    }
-    50%{
-        top: 50px;
-    }
-}
-
 @media (max-width: 320px){
+    
     form{
         width: 90%;
-        height: 70%;
+        height: 80%;
         margin: 0 auto;
         
     }
@@ -111,7 +102,7 @@ button{
     }
 
     button{
-        margin-top: 15%;
+        margin-top: 10%;
         border: none;
         width: 250px;
         cursor: pointer;
@@ -122,32 +113,12 @@ button{
     }
 
     #info-cad{
-        margin-top: 60%;
+        margin-top: 25%;
     }
 
     #div-inputs{
-        margin-top: 35%;
+        margin-top: 20%;
         gap: 8px;
-    }
+    } 
     
-}
-
-@media (max-width: 400px){
-    li{
-        background-color: red;
-    }
-}
-
-
-@media (min-width: 450px){
-    li{
-        width: 150px;
-    }
-}
-
-@media (min-width: 700px){
-    li{
-        width: 250px;
-    }
-
 }
