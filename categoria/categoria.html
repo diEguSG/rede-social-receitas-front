@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtros de Receitas</title>
+  <style>
+    /* Estilo opcional para melhorar a aparência da lista de filtros */
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Lista de Filtros</h2>
+
+<button onclick="mostrarFiltros()">Filtros</button>
+
+<div id="filtros" style="display:none;">
+  <label>
+    <input type="checkbox" id="categoria1"> Categoria 1
+  </label>
+  <label>
+    <input type="checkbox" id="categoria2"> Categoria 2
+  </label>
+  <label>
+    <input type="checkbox" id="categoria3"> Categoria 3
+  </label>
+  <!-- Adicione mais categorias conforme necessário -->
+
+  <button onclick="aplicarFiltros()">Aplicar Filtros</button>
+</div>
+
+<script>
+  function mostrarFiltros() {
+    var filtrosDiv = document.getElementById("filtros");
+    filtrosDiv.style.display = (filtrosDiv.style.display === "none") ? "block" : "none";
+  }
+
+  function aplicarFiltros() {
+    // Obter todas as checkboxes
+    var checkboxes = document.querySelectorAll('input[type=checkbox]');
+    
+    // Filtrar apenas as checkboxes marcadas
+    var categoriasSelecionadas = Array.from(checkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.id);
+
+    // Exibir as categorias selecionadas (pode ser ajustado conforme necessário)
+    alert('Categorias Selecionadas: ' + categoriasSelecionadas.join(', '));
+  }
+</script>
+
+</body>
+</html>
