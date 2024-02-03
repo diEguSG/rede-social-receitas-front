@@ -1,4 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
+import {modal_erro} from "../modal.js";
 
 const form = document.querySelector("form");
 
@@ -22,13 +23,14 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
-        console.log("Campos em Brancos");   
+        modal_erro("Favor, preencher campos vazios!", "error");
+        return true;   
     }
 
     if(validar_usuario.senha != validar_usuario.confirmar_senha){
-        console.log("Senhas Diferentes")
+        modal_erro("As Senhas Precisam ser Iguais!", "error");
+        return true;
     }
-
 
     validar_usuario.nome = validar_usuario.nome.toLowerCase();
     validar_usuario.nome = validar_usuario.nome.trim();
@@ -47,8 +49,6 @@ async function cadastro(){
         id_tipo_usuario: 2,
         id_situacao_usuario: 1
     }
-
-    console.log(usuario_valido);
 
     const usuario_valido_json = JSON.stringify(usuario_valido);
     
