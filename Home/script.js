@@ -9,6 +9,7 @@ function curtir() {
     localStorage.setItem('likeCount', likeCount);
     document.getElementById('likeCount').innerText = likeCount;
 }
+
 async function getreceita(){
     const res = await fetch("http://localhost:3003/receita")
     const receita = await res.json()

@@ -1,8 +1,6 @@
 export function modal_erro(mensagem, situacao){
     const main  = document.querySelector("main");
 
-    console.log(mensagem)
-
     main.insertAdjacentHTML("afterbegin",`
         <div class="modal-src">
             <div class="modal" id="modal">

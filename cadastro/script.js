@@ -23,12 +23,19 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
+        
+        document.querySelector("inp")
         modal_erro("Favor, preencher campos vazios!", "error");
         return true;   
     }
 
+    if(validar_usuario.senha.length < 7){
+        console.log("Abaixo de 7 caracteres");
+        return true;
+    }
+
     if(validar_usuario.senha != validar_usuario.confirmar_senha){
-        modal_erro("As Senhas Precisam ser Iguais!", "error");
+        modal_erro("As não conferem!", "error");
         return true;
     }
 
@@ -58,4 +65,20 @@ async function cadastro(){
         method: "POST",
         body: usuario_valido_json
     })
+
+    if(res.status == 200){
+        
+        window.location.href = '../login/index.html';
+          
+    }
+    else{
+        const res_json = await res.json();
+        
+        if(res.status == 720){
+            modal_erro(res_json.error_mail, "error")
+        }
+        else{
+            modal_erro("Ocorreu um erro Inesperado!", "error");
+        }
+    }
 }
