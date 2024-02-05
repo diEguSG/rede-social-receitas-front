@@ -23,8 +23,6 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
-        
-        document.querySelector("inp")
         modal_erro("Favor, preencher campos vazios!", "error");
         return true;   
     }
