@@ -1,4 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
+import {modal_erro} from "../modal.js";
 
 const form = document.querySelector("form");
 
@@ -22,13 +23,19 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
-        console.log("Campos em Brancos");   
+        modal_erro("Favor, preencher campos vazios!", "error");
+        return true;   
+    }
+
+    if(validar_usuario.senha.length < 7){
+        console.log("Abaixo de 7 caracteres");
+        return true;
     }
 
     if(validar_usuario.senha != validar_usuario.confirmar_senha){
-        console.log("Senhas Diferentes")
+        modal_erro("As não conferem!", "error");
+        return true;
     }
-
 
     validar_usuario.nome = validar_usuario.nome.toLowerCase();
     validar_usuario.nome = validar_usuario.nome.trim();
@@ -48,8 +55,6 @@ async function cadastro(){
         id_situacao_usuario: 1
     }
 
-    console.log(usuario_valido);
-
     const usuario_valido_json = JSON.stringify(usuario_valido);
     
     const res = await fetch(`${baseURL}/cadastro`,
@@ -58,4 +63,20 @@ async function cadastro(){
         method: "POST",
         body: usuario_valido_json
     })
+
+    if(res.status == 200){
+        
+        window.location.href = '../login/index.html';
+          
+    }
+    else{
+        const res_json = await res.json();
+        
+        if(res.status == 720){
+            modal_erro(res_json.error_mail, "error")
+        }
+        else{
+            modal_erro("Ocorreu um erro Inesperado!", "error");
+        }
+    }
 }

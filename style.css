@@ -3,3 +3,53 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #fc782c;
+}
+
+h1{
+    margin-bottom: 20%;
+}
+
+input{
+    outline: none;
+    border-style: none none solid none;
+    border-width: 1px;
+    width: 250px;
+    height: 25px;  
+}
+
+#bnt-cad-log{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+button{
+    border: none;
+    width: 250px;
+    cursor: pointer;
+    padding: 8px;
+    text-transform: uppercase;
+    background-color: #f55353;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: #ffff;
+}
+
+p{
+    margin-top: 20%;
+}
+

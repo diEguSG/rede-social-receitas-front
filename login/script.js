@@ -1,4 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
+import {modal_erro} from "../modal.js";
 
 const form = document.querySelector("form");
 
@@ -18,7 +19,8 @@ async function login(){
     }
 
     if(usuario.email == "" || usuario.senha == ""){
-        console.log("Campos em Brancos");   
+        modal_erro("Favor, preencher campos vazios!", "error")
+        return true;  
     }
 
     const usuario_json = JSON.stringify(usuario);
@@ -30,9 +32,21 @@ async function login(){
         body: usuario_json
     })   
 
+    
+
     if(res.status == 200){
-        const res_json = await res.json()
-        localStorage.setItem("@token", res_json.acesso_token);
-        window.location.href = '../home/index.html';
+
+        const res_json = await res.json();
+        localStorage.setItem("@token-usuario", res_json.acesso_token);
+
+        if(res_json.tipo_usuario == 1){
+            console.log("Login Admin")
+        }   
+        else{
+            window.location.href = '../home/index.html';
+        }   
+    }
+    else{
+        modal_erro("Usuário ou Senha Inválidos", "error")
     }
 }
