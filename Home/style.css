@@ -62,13 +62,13 @@ ul {
     justify-content: center;
     flex-wrap: wrap;
 }
-
 li {
     margin-bottom: 20px;
     border: 1px solid #ddd;
     padding: 40px;
     max-width: 300px;
 }
+
 
 li img {
     width: 100%;
