@@ -1,8 +1,17 @@
+import {baseURL} from "../conexao_servidor.js"
+
 const token = localStorage.getItem("@token-usuario");
 
 if(!token){
     window.location.replace("../index.html");
 }
+
+const img_perfil_usuario = document.querySelector("#img-perfil-usuario");
+
+img_perfil_usuario.addEventListener('click', ()=>{
+    window.location.href = '../tela_perfil/index.html';
+})
+
 
 function curtir() {
     likeCount++;
@@ -11,7 +20,7 @@ function curtir() {
 }
 
 async function getreceita(){
-    const res = await fetch("http://localhost:3003/receita")
+    const res = await fetch(`${baseURL}/receita`)
     const receita = await res.json()
     console.log(receita)
     const ul = document.querySelector("ul")

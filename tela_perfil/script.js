@@ -1,3 +1,5 @@
+import {baseURL} from "../conexao_servidor.js";
+
 document.addEventListener('DOMContentLoaded', function () {
    
     const userData = {
