@@ -3,7 +3,7 @@ import {baseURL} from "../conexao_servidor.js"
 const token = localStorage.getItem("@token-usuario");
 
 if(!token){
-    window.location.replace("../index.html");
+    window.location.replace("../login/index.html");
 }
 
 const img_perfil_usuario = document.querySelector("#img-perfil-usuario");
@@ -47,12 +47,8 @@ async function getreceita(){
         btnvermais.addEventListener("click",()=>{
         btnvermais.setAttribute("style","display:none;")
         const div = document.getElementById(`desc${element.id}`)
-        div.insertAdjacentHTML("beforeend", `  <li><p>${element.descricao}</p></li> `)
-       
-    });
-   
-   
+        div.insertAdjacentHTML("beforeend", `  <li><p>${element.descricao}</p></li> `)     
+    });  
     })
 }
-
  getreceita()

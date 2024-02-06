@@ -1,9 +1,8 @@
 const token = localStorage.getItem("@token-usuario");
 
-if(!token){
-    window.location.replace("../index.html");
-}
-else{
+if(token){
+
     window.location.href = '../home/index.html';
 }
+
 
