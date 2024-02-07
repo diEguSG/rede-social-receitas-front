@@ -22,25 +22,26 @@ async function carregarPostagens(){
         const res_json = await res.json();
         const receitas = res_json.receita;
         console.log(receitas);
+        const admin = localStorage.getItem("@tipo-usuario")
         const ul = document.querySelector("ul")
         receitas.forEach(receita => {
             console.log(receita)
             ul.insertAdjacentHTML("beforeend",`
-            <li id="${receita.id}">
-                <div>
-                    <h3>
-                        ${receita.titulo}
-                    </h3>
-                </div>
+                <li id="${receita.id}">
+                    <div>
+                        <h3>
+                            ${receita.titulo}
+                        </h3>
+                    </div>
+                    ${admin && "<p>Excluir</p>"}
+                    <img src="${receita.imagem}" alt="Imagem da Receita">
 
-                <img src="${receita.imagem}" alt="Imagem da Receita">
-
-                <div class="botao" id="div-descricao-${receita.id}">
-                    <button><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>    
-                    <button id="btn-curtida-${receita.id}" onclick="curtir(${receita.id})">Curtir <span id="contador-curtida">0</span></button>                        
-                    <button class="ver-mais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
-                </div>
-            </li>`)
+                    <div class="botao" id="div-descricao-${receita.id}">
+                        <button><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>    
+                        <button id="btn-curtida-${receita.id}" onclick="curtir(${receita.id})">Curtir <span id="contador-curtida">0</span></button>                        
+                        <button class="ver-mais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
+                    </div>
+                </li>`)
 
             const btn_ver_mais = document.getElementById(`btn-ver-mais-${receita.id}`)
             btn_ver_mais.addEventListener("click",()=>{
