@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -18,141 +18,54 @@ main{
     background-color: var(--cor_primaria-100);
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     padding: 30px 42px;
     background-color: #f5f5f5;
     border-radius: 20px;
     filter: drop-shadow(10px 10px 5px gray);
+    max-width: 400px;
+    width: 90%;
 }
 
-input{
+input {
     outline: none;
-    border-style: none none solid none;
-    border-width: 1px;
-    width: 300px;
-    height: 30px;  
-}
-
-input:hover{
-    opacity: 80%;
-}
-
-form div{
-    display: flex;
-    flex-direction: column;
-}
-
-#div-inputs{
-    gap: 8px;
-}
-
-#info-cad{
-    margin-top: 10px;
-}
-
-button{
-    margin-top: 10px;
     border: none;
-    width: 300px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+button {
+    border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     text-transform: uppercase;
     background-color: #f55353;
     color: white;
-}
-
-
-.toastify{
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    border-radius: 32px;
-    background-color: green;
     width: 100%;
-    max-width: 300px;
-    justify-content: center;
-    position: fixed;
-    top: -100px;
-    animation: toastAnimation 5s ease;
+    margin-top: 10px;
 }
 
-.toastify p{
-    font-size: 12px;
-    color: white;
+#info-cad {
+    margin-top: 10px;
+    text-align: center;
 }
 
-.error{
-    background-color: red;
-}
-
-@keyframes toastAnimation{
-    0%, 100%{
-        position: fixed;
-        top: -100px;
-    }
-    50%{
-        top: 50px;
-    }
-}
-
-@media (max-width: 320px){
-    form{
-        width: 90%;
-        height: 70%;
-        margin: 0 auto;
-        
+@media (max-width: 600px) {
+    input {
+        height: 25px;
     }
 
-    input{
-        outline: none;
-        border-style: none none solid none;
-        border-width: 1px;
-        width: 250px;
-        height: 25px;  
-    }
-
-    button{
+    button {
         margin-top: 15%;
-        border: none;
-        width: 250px;
-        cursor: pointer;
-        padding: 8px;
-        text-transform: uppercase;
-        background-color: #f55353;
-        color: white;
     }
 
-    #info-cad{
-        margin-top: 60%;
+    #info-cad {
+        margin-top: 20%;
     }
-
-    #div-inputs{
-        margin-top: 35%;
-        gap: 8px;
-    }
-    
-}
-
-@media (max-width: 400px){
-    li{
-        background-color: red;
-    }
-}
-
-
-@media (min-width: 450px){
-    li{
-        width: 150px;
-    }
-}
-
-@media (min-width: 700px){
-    li{
-        width: 250px;
-    }
-
 }
