@@ -38,6 +38,7 @@ async function login(){
 
         const res_json = await res.json();
         localStorage.setItem("@token-usuario", res_json.acesso_token);
+        localStorage.setItem("@id-usuario", res_json.id_usuario)
 
         if(res_json.tipo_usuario == 1){
             console.log("Login Admin")
