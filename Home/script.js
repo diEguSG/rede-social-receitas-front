@@ -18,7 +18,7 @@ function curtir() {
     console.log(likeCount)
     likeCount++;
     localStorage.setItem(`likeCount${id}`, likeCount);
-    document.getElementById(`likeBtn${id}`).innerText = 'Curtir ' + likeCount;
+    document.getElementById(`likeBtn${id}`).innerText = 'curtir ' + likeCount;
 }
 
 async function getreceita(){
