@@ -3,25 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <title>Perfil de Usuário</title>
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../atualizar_cadastro/style.css">
 </head>
 <body>
-  <div class="profile-container">
-    <div class="profile-header">
-      <img src="avatar.jpg" alt="Usuário">
-      <div class="div-detalhes-usuario">
-        <h1 id="h1-nome-usuario">Nome da Usuária</h1>
-        <p id="p-contador-curtidas">22 Curtidas</p>
+  
+  <main>
+    <div class="profile-container">
+      
+      <div class="profile-header">
+        <img src="avatar.jpg" alt="Usuário">
+        <div class="div-detalhes-usuario">
+          <h1 id="h1-nome-usuario">Nome do Usuário</h1>
+          <p id="p-contador-curtidas">22 Curtidas</p>
+          <button id="btn-editar-perfil">Editar Perfil</button>
+        </div>
       </div>
-    </div>
-    
-    <div class="div-receitas-criadas">
-      <h2>Receitas Criadas</h2>
-      <ul id="lista-receitas-criadas"></ul>
-    </div>
-  </div>
+      
+      <div class="div-receitas-criadas">
+        <h2>Receitas Criadas</h2>
+        <ul id="lista-receitas-criadas"></ul>
+      </div>
 
-  <script type="module" src="script.js"></script>
+    </div>
+  
+    <script type="module" src="script.js"></script>
+  </main>
+
 </body>
 </html>

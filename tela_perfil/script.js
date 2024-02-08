@@ -1,8 +1,16 @@
 import {baseURL} from "../conexao_servidor.js";
+import {modal_atualizar_cadastro} from "../atualizar_cadastro/script.js"
 
 const myHeaders = {
     "Content-Type": "application/json"
 }
+
+const btn_editar_perfil = document.querySelector("#btn-editar-perfil");
+
+btn_editar_perfil.addEventListener('click', ()=>{
+    modal_atualizar_cadastro();
+})
+
 
 async function carregarPostagens(){
 
@@ -21,11 +29,9 @@ async function carregarPostagens(){
     if(res.status == 200){
         const res_json = await res.json();
         const receitas = res_json.receita;
-        console.log(receitas);
         const admin = localStorage.getItem("@tipo-usuario")
         const ul = document.querySelector("ul")
         receitas.forEach(receita => {
-            console.log(receita)
             ul.insertAdjacentHTML("beforeend",`
                 <li id="${receita.id}">
                     <div>
@@ -37,7 +43,7 @@ async function carregarPostagens(){
                     <img src="${receita.imagem}" alt="Imagem da Receita">
 
                     <div class="botao" id="div-descricao-${receita.id}">
-                        <button><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>    
+                        <button><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
                         <button id="btn-curtida-${receita.id}" onclick="curtir(${receita.id})">Curtir <span id="contador-curtida">0</span></button>                        
                         <button class="ver-mais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
                     </div>
