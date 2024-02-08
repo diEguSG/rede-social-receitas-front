@@ -35,16 +35,10 @@ async function login(){
     
 
     if(res.status == 200){
-
         const res_json = await res.json();
         localStorage.setItem("@token-usuario", res_json.acesso_token);
-
-        if(res_json.tipo_usuario == 1){
-            console.log("Login Admin")
-        }   
-        else{
-            window.location.href = '../home/index.html';
-        }   
+        localStorage.setItem("@tipo-usuario", res_json.tipo_usuario);
+        window.location.href = '../home/index.html';      
     }
     else{
         modal_erro("Usuário ou Senha Inválidos", "error")
