@@ -28,12 +28,12 @@ async function cadastro(){
     }
 
     if(validar_usuario.senha.length < 7){
-        console.log("Abaixo de 7 caracteres");
+        modal_erro("Abaixo de 7 caracteres", "error");
         return true;
     }
 
     if(validar_usuario.senha != validar_usuario.confirmar_senha){
-        modal_erro("As não conferem!", "error");
+        modal_erro("As senhas não conferem!", "error");
         return true;
     }
 

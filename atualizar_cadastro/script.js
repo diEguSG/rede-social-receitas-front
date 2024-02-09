@@ -60,6 +60,11 @@ export async function modal_atualizar_cadastro(){
     form.addEventListener('submit', async(event)=>{
         event.preventDefault();
 
+        if(document.querySelector("#inp-nome").value == ""){
+            modal_erro("Nome do usuário não pode estar Vazio!", "error");
+            return true;   
+        }
+
         const dados_usuario = {
             id_usuario: usuario.id,
             nome: document.querySelector("#inp-nome").value,
@@ -68,13 +73,13 @@ export async function modal_atualizar_cadastro(){
 
         if(document.querySelector("#inp-senha").value != "" || document.querySelector("#inp-confirmar-senha").value != ""){
             
-            if(document.querySelector("#inp-senha").value < 7){
+            if(document.querySelector("#inp-senha").value.length < 7){
                 modal_erro("Abaixo de 7 caracteres", "error");
                 return true;
             }
 
             if(document.querySelector("#inp-senha").value != document.querySelector("#inp-confirmar-senha").value){
-                modal_erro("As não conferem!", "error");
+                modal_erro("As senhas não conferem!", "error");
                 return true;
             }
             

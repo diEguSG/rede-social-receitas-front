@@ -1,15 +1,15 @@
 export function modal_erro(mensagem, situacao){
-    const main  = document.querySelector("main");
+    const body  = document.querySelector("body");
 
-    main.insertAdjacentHTML("afterbegin",`
-        <div class="modal-src">
+    body.insertAdjacentHTML("afterbegin",`
+        <div class="modal-src-erro">
             <div class="modal" id="modal">
                 <p>${mensagem}</p>
             </div>
         </div>
     `)
 
-    const div = document.querySelector(".modal-src")
+    const div = document.querySelector(".modal-src-erro")
 
     if(situacao == "error"){       
         
@@ -17,7 +17,7 @@ export function modal_erro(mensagem, situacao){
         modal.classList.add("error")
         
         setTimeout(()=>{
-            main.removeChild(div)
+            body.removeChild(div)
         }, 3000)
     }
 
