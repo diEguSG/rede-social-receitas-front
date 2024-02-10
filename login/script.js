@@ -1,5 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
-import {modal_erro} from "../modal.js";
+import {modal_resposta} from "../modal.js";
 
 const form = document.querySelector("form");
 
@@ -19,7 +19,7 @@ async function login(){
     }
 
     if(usuario.email == "" || usuario.senha == ""){
-        modal_erro("Favor, preencher campos vazios!", "error")
+        modal_resposta("Favor, preencher campos vazios!", "error")
         return true;  
     }
 
@@ -42,6 +42,6 @@ async function login(){
         window.location.href = '../home/index.html';      
     }
     else{
-        modal_erro("Usuário ou Senha Inválidos", "error")
+        modal_resposta("Usuário ou Senha Inválidos", "error")
     }
 }

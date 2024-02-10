@@ -1,5 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
-import {modal_erro} from "../modal.js";
+import {modal_resposta} from "../modal.js";
 
 const myHeaders = {
     "Content-Type": "application/json"
@@ -61,7 +61,7 @@ export async function modal_atualizar_cadastro(){
         event.preventDefault();
 
         if(document.querySelector("#inp-nome").value == ""){
-            modal_erro("Nome do usuário não pode estar Vazio!", "error");
+            modal_resposta("Nome do usuário não pode estar Vazio!", "error");
             return true;   
         }
 
@@ -74,12 +74,12 @@ export async function modal_atualizar_cadastro(){
         if(document.querySelector("#inp-senha").value != "" || document.querySelector("#inp-confirmar-senha").value != ""){
             
             if(document.querySelector("#inp-senha").value.length < 7){
-                modal_erro("Abaixo de 7 caracteres", "error");
+                modal_resposta("Abaixo de 7 caracteres", "error");
                 return true;
             }
 
             if(document.querySelector("#inp-senha").value != document.querySelector("#inp-confirmar-senha").value){
-                modal_erro("As senhas não conferem!", "error");
+                modal_resposta("As senhas não conferem!", "error");
                 return true;
             }
             
@@ -108,5 +108,9 @@ async function atualizar_cadastro_usuario(dados_usuario){
         method: "PATCH",
         body: dados_usuario_json
     })
+
+    if(res.status == 200){
+        modal_resposta("Perfil Atualizado!", "ok")
+    }
 
 }

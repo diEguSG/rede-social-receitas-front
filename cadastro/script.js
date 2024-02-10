@@ -1,5 +1,5 @@
 import {baseURL} from "../conexao_servidor.js";
-import {modal_erro} from "../modal.js";
+import {modal_resposta} from "../modal.js";
 
 const form = document.querySelector("form");
 
@@ -23,17 +23,17 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
-        modal_erro("Favor, preencher campos vazios!", "error");
+        modal_resposta("Favor, preencher campos vazios!", "error");
         return true;   
     }
 
     if(validar_usuario.senha.length < 7){
-        modal_erro("Abaixo de 7 caracteres", "error");
+        modal_resposta("Abaixo de 7 caracteres", "error");
         return true;
     }
 
     if(validar_usuario.senha != validar_usuario.confirmar_senha){
-        modal_erro("As senhas não conferem!", "error");
+        modal_resposta("As senhas não conferem!", "error");
         return true;
     }
 
@@ -65,7 +65,7 @@ async function cadastro(){
     })
 
     if(res.status == 200){
-        
+        modal_resposta("Cadastro Realizado com Sucesso!", "ok")
         window.location.href = '../login/index.html';
           
     }
@@ -73,10 +73,10 @@ async function cadastro(){
         const res_json = await res.json();
         
         if(res.status == 720){
-            modal_erro(res_json.error_mail, "error")
+            modal_resposta(res_json.error_mail, "error")
         }
         else{
-            modal_erro("Ocorreu um erro Inesperado!", "error");
+            modal_resposta("Ocorreu um erro Inesperado!", "error");
         }
     }
 }
