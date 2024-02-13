@@ -1,6 +1,8 @@
 export function modal_resposta(mensagem, situacao){
     const body  = document.querySelector("body");
 
+    console.log("CHEGOU")
+
     body.insertAdjacentHTML("afterbegin",`
         <div class="modal-src-resposta">
             <div class="modal-${situacao}" id="modal">
@@ -19,7 +21,7 @@ export function modal_resposta(mensagem, situacao){
     }
 
     if(situacao == "ok"){
-        
+
         setTimeout(()=>{
             body.removeChild(div)
         }, 2000)

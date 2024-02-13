@@ -4,6 +4,7 @@ const token = localStorage.getItem("@token-usuario");
 const myHeaders = {
     "Content-Type": "application/json"
 }
+
 if(!token){
     window.location.replace("../login/index.html");
 }

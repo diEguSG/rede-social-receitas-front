@@ -23,12 +23,12 @@ async function cadastro(){
     }
 
     if(validar_usuario.nome == "" || validar_usuario.sobrenome == "" || validar_usuario.email_telefone == "" || validar_usuario.senha == "" || validar_usuario.confirmar_senha == ""){
-        modal_resposta("Favor, preencher campos vazios!", "error");
+        modal_resposta("Favor, preencher os campos vazios!", "error");
         return true;   
     }
 
     if(validar_usuario.senha.length < 7){
-        modal_resposta("Abaixo de 7 caracteres", "error");
+        modal_resposta("Senha abaixo de 7 caracteres", "error");
         return true;
     }
 
@@ -66,8 +66,9 @@ async function cadastro(){
 
     if(res.status == 200){
         modal_resposta("Cadastro Realizado com Sucesso!", "ok")
-        window.location.href = '../login/index.html';
-          
+        setTimeout(()=>{
+            window.location.href = '../login/index.html';
+        }, 2000)          
     }
     else{
         const res_json = await res.json();

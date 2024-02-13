@@ -19,7 +19,7 @@ async function login(){
     }
 
     if(usuario.email == "" || usuario.senha == ""){
-        modal_resposta("Favor, preencher campos vazios!", "error")
+        modal_resposta("Favor, preencher os campos vazios!", "error")
         return true;  
     }
 
@@ -32,14 +32,16 @@ async function login(){
         body: usuario_json
     })   
 
-    
-
     if(res.status == 200){
         const res_json = await res.json();
+        modal_resposta("Usuário Autenticado!", "ok")
         localStorage.setItem("@token-usuario", res_json.acesso_token);
         localStorage.setItem("@id-usuario", res_json.id_usuario);
         localStorage.setItem("@tipo-usuario", res_json.tipo_usuario);
-        window.location.href = '../home/index.html';      
+        setTimeout(()=>{
+            window.location.href = '../home/index.html';
+        }, 2000)
+        
     }
     else{
         modal_resposta("Usuário ou Senha Inválidos", "error")

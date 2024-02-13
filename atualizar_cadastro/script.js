@@ -74,7 +74,7 @@ export async function modal_atualizar_cadastro(){
         if(document.querySelector("#inp-senha").value != "" || document.querySelector("#inp-confirmar-senha").value != ""){
             
             if(document.querySelector("#inp-senha").value.length < 7){
-                modal_resposta("Abaixo de 7 caracteres", "error");
+                modal_resposta("Senha abaixo de 7 caracteres", "error");
                 return true;
             }
 
