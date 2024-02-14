@@ -73,7 +73,7 @@ async function cadastro(){
     else{
         const res_json = await res.json();
         
-        if(res.status == 720){
+        if(res.status == 409){
             modal_resposta(res_json.error_mail, "error")
         }
         else{
