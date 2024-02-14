@@ -1,10 +1,8 @@
 import {baseURL} from "../conexao_servidor.js";
 import {modal_atualizar_cadastro} from "../atualizar_cadastro/script.js";
 import {modal_confirmar_exclusao} from "../modal.js";
+import {myHeaders} from "../headers.js";
 
-const myHeaders = {
-    "Content-Type": "application/json"
-}
 
 const btn_editar_perfil = document.querySelector("#btn-editar-perfil");
 

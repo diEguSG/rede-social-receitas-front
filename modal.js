@@ -1,8 +1,5 @@
 import {baseURL} from "./conexao_servidor.js";
-
-const myHeaders = {
-    "Content-Type": "application/json"
-}
+import {myHeaders} from "./headers.js"
 
 export function modal_resposta(mensagem, situacao){
     const body  = document.querySelector("body");

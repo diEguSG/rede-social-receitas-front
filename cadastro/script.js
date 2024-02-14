@@ -1,11 +1,8 @@
 import {baseURL} from "../conexao_servidor.js";
 import {modal_resposta} from "../modal.js";
+import {myHeaders} from "../headers.js";
 
 const form = document.querySelector("form");
-
-const myHeaders = {
-    "Content-Type": "application/json"
-}
 
 form.addEventListener('submit', async(event)=>{
     event.preventDefault();
