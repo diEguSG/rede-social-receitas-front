@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+ul,li{
+    list-style: none;
+}
 :root{
     --cor_primaria:#cf535b;
     --cor_primaria-100:#e88a66;

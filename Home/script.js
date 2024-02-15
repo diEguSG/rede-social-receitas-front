@@ -40,7 +40,9 @@ async function descurtir(id) {
 
 async function getreceita(){
     const res = await fetch(`${baseURL}/receita`)
+
     const receita = await res.json()
+    localStorage.setItem("receitas",JSON.stringify(receita))
     const ul = document.querySelector("ul")
     ul.innerHTML=""
     receita.forEach(element => {
@@ -48,7 +50,7 @@ async function getreceita(){
         ul.insertAdjacentHTML("beforeend",`
         <li>
             <div>
-                <img id="img-perfil-receita${element.id_usuario}"src="https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" alt=""class="fotoperfil">
+                <img id="img-perfil-receita${element.id}"src="https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" alt=""class="fotoperfil">
                     <h3>
                          Hambúrger
                     </h3>
@@ -60,7 +62,12 @@ async function getreceita(){
                         <button class="vermais" id="ver${element.id}">Ver Mais</button>                              
                     </div>
         </li>`)
-        
+        const imgReceita = document.querySelector(`#img-perfil-receita${element.id}`)
+        imgReceita.addEventListener("click",()=>{
+            console.log(element.id)
+            localStorage.setItem("seleciona_receita", element.id)
+            location.href = "/tela_receita"
+        })
         const btn_ver_mais = document.getElementById(`ver${element.id}`)
         btn_ver_mais.addEventListener("click",()=>{
         btn_ver_mais.setAttribute("style","display:none;")
