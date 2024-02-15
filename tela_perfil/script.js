@@ -11,15 +11,23 @@ async function carregarTelaPerfil(){
 
     const usuario_json = JSON.stringify(usuario);
 
-    const res = await fetch(`${baseURL}/atualizar_cadastro`,
+    const res_usuario = await fetch(`${baseURL}/atualizar_cadastro`,
     {
         headers: myHeaders,
         method: "POST",
         body: usuario_json
     });
 
-    const res_json = await res.json();
-    const dados_usuario = res_json.usuario;
+    const res_receita = await fetch(`${baseURL}/receita_usuario/${usuario.id_usuario}`,{
+        headers: myHeaders,
+        method: "PATCH"
+    })
+
+    const res_usuario_json = await res_usuario.json();
+    const dados_usuario = res_usuario_json.usuario;
+
+    const res_receita_json = await res_receita.json();
+    const dados_receita = res_receita_json.receita;
 
     const div = document.querySelector(".profile-container");
 
@@ -30,7 +38,7 @@ async function carregarTelaPerfil(){
 
             <div class="div-detalhes-usuario">
                 <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
-                <p id="p-contador-curtidas">22 Curtidas</p>
+                <p id="p-contador-curtidas">${dados_receita.curtida} Curtidas</p>
                 <button id="btn-editar-perfil">Editar Perfil</button>
             </div>
 
