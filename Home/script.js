@@ -60,7 +60,7 @@ async function getreceita(){
                         <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>                        
                         <button class="vermais" id="ver${element.id}">Ver Mais</button>                              
                     </div>
-        </li>`)
+        </li>`);
         const btncurtir = document.getElementById(`likeBtn${element.id}`)
         btncurtir.addEventListener("click", () => {
             const curtido = localStorage.getItem(`likeCount${element.id}`)
