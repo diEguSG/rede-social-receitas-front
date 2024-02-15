@@ -1,7 +1,9 @@
 import {baseURL} from "../conexao_servidor.js";
 import {modal_atualizar_cadastro} from "../atualizar_cadastro/script.js";
-import {modal_confirmar_exclusao} from "../modal.js";
+import {modal_confirmar_bloqueio, modal_confirmar_exclusao} from "../modal.js";
 import {myHeaders} from "../headers.js";
+
+const admin = localStorage.getItem("@tipo-usuario")
 
 async function carregarTelaPerfil(){
     
@@ -40,6 +42,9 @@ async function carregarTelaPerfil(){
                 <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
                 <p id="p-contador-curtidas">${dados_receita.curtida} Curtidas</p>
                 <button id="btn-editar-perfil">Editar Perfil</button>
+                <div id="icone-bloquear-${dados_usuario.id}">
+                    ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
+                </div>
             </div>
 
         </div>
@@ -49,6 +54,14 @@ async function carregarTelaPerfil(){
 
     btn_editar_perfil.addEventListener('click', ()=>{
         modal_atualizar_cadastro();
+    })
+
+
+    const img_bloquear_perfil = document.getElementById(`icone-bloquear-${dados_usuario.id}`)
+    img_bloquear_perfil.classList.add("icone-bloquear")
+
+    img_bloquear_perfil.addEventListener('click', ()=>{
+        bloquearUsuario(dados_usuario.id)
     })
 }
 
@@ -96,24 +109,23 @@ async function carregarPostagens(){
     if(res.status == 200){
         const res_json = await res.json();
         const receitas = res_json.receita;
-        const admin = localStorage.getItem("@tipo-usuario")
         const ul = document.querySelector("ul")
         
         receitas.forEach(receita => {
             
             ul.insertAdjacentHTML("beforeend",`
                 <li id="${receita.id}">
-                    <div>
-                        <h3>
-                            ${receita.titulo}
-                        </h3>
-                    </div>
+
+                    <h3>
+                        ${receita.titulo}
+                    </h3>     
 
                     <div id="icone-lixeira-${receita.id}">
+                    
                         ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/3976/3976956.png' alt='icone-lixeira'>" : ""}
                     </div>
 
-                    <img src="${receita.imagem} alt="Imagem da Receita">
+                    <img src="${receita.imagem} alt="Imagem da Receita" id="img-receita">
 
                     <div class="botao" id="div-descricao-${receita.id}">
                         <button><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
@@ -144,6 +156,7 @@ async function carregarPostagens(){
             });
 
             const img_icone_lixeira = document.getElementById(`icone-lixeira-${receita.id}`);
+            img_icone_lixeira.classList.add("icone-lixeira")
 
             img_icone_lixeira.addEventListener('click', ()=>{
                 deletarPostagem(receita.id);
@@ -151,6 +164,10 @@ async function carregarPostagens(){
         });
     };
 };
+
+async function bloquearUsuario(id){
+    modal_confirmar_bloqueio(id,"admin")
+}
 
 async function deletarPostagem(id){
     modal_confirmar_exclusao(id, "admin")

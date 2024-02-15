@@ -29,18 +29,24 @@ async function login(){
         body: usuario_json
     })   
 
-    if(res.status == 200){
-        const res_json = await res.json();
+    const res_json = await res.json();
+
+    if(res.status == 200 && res_json.id_situacao_usuario == 1){
         modal_resposta("Usuário Autenticado!", "ok")
         localStorage.setItem("@token-usuario", res_json.acesso_token);
         localStorage.setItem("@id-usuario", res_json.id_usuario);
         localStorage.setItem("@tipo-usuario", res_json.tipo_usuario);
         setTimeout(()=>{
             window.location.href = '../home/index.html';
-        }, 2000)
-        
+        }, 2000)    
     }
     else{
+
+        if(res_json.id_situacao_usuario == 2){
+            modal_resposta("Usuário bloqueado", "error");
+            return true;
+        }
+
         modal_resposta("Usuário ou Senha Inválidos", "error")
     }
 }

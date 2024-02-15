@@ -75,3 +75,51 @@ export function modal_confirmar_exclusao(id, situacao){
         })
     }
 }
+
+export function modal_confirmar_bloqueio(id, situacao){
+    const body  = document.querySelector("body");
+
+    body.insertAdjacentHTML("afterbegin",`
+        <div class="modal-src-resposta">
+            <div class="modal-${situacao}" id="modal">
+                <p>Deseja realmente bloquear o usuário?</p>
+                <button id="btn-confirmar-bloqueio">Sim</button>
+                <button id="btn-cancelar-bloqueio">Não</button>
+            </div>
+        </div>
+    `)
+
+    const div = document.querySelector(".modal-src-resposta")
+
+    if(situacao == "admin"){      
+        
+        const btn_confirmar_bloqueio = document.querySelector("#btn-confirmar-bloqueio");
+        const btn_cancelar_bloqueio = document.querySelector("#btn-cancelar-bloqueio");
+
+        btn_confirmar_bloqueio.addEventListener('click', async ()=>{
+            
+            const dados_usuario = {
+                id_usuario: id,
+                id_situacao_usuario: 2 
+            };
+
+            const dados_usuario_json = JSON.stringify(dados_usuario);
+
+            const res = await fetch(`${baseURL}/cadastro/${dados_usuario.id_usuario}`, 
+            {
+                headers: myHeaders,
+                method: "PATCH",
+                body: dados_usuario_json
+            });
+
+            if(res.status == 204){
+                location.reload();
+            }
+
+        })
+
+        btn_cancelar_bloqueio.addEventListener('click', ()=>{
+            body.removeChild(div)
+        })
+    }
+}
