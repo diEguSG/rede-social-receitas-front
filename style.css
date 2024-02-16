@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+ul,li{
+    list-style: none;
+}
 :root{
     --cor_primaria:#cf535b;
     --cor_primaria-100:#e88a66;
@@ -17,8 +20,8 @@ main{
     justify-content: center;
     height: 100vh;
     width: 100%;
-    background-color:  var(--cor_primaria-300 ) ;
-    
+    /* background-color:  var(--cor_primaria-300 ) ;
+     */
 }
 
 h1{
