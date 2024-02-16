@@ -37,8 +37,10 @@ export function modal_confirmar_exclusao(id, situacao){
         <div class="modal-src-resposta">
             <div class="modal-${situacao}" id="modal">
                 <p>Deseja realmente prosseguir com a exlcusão?</p>
-                <button id="btn-confirmar-exclusao">Sim</button>
-                <button id="btn-cancelar-exclusao">Não</button>
+                <div>
+                    <button id="btn-confirmar-exclusao">Sim</button>
+                    <button id="btn-cancelar-exclusao">Não</button>
+                </div>
             </div>
         </div>
     `)
@@ -83,8 +85,10 @@ export function modal_confirmar_bloqueio(id, situacao){
         <div class="modal-src-resposta">
             <div class="modal-${situacao}" id="modal">
                 <p>Deseja realmente bloquear o usuário?</p>
-                <button id="btn-confirmar-bloqueio">Sim</button>
-                <button id="btn-cancelar-bloqueio">Não</button>
+                <div>
+                    <button id="btn-confirmar-bloqueio">Sim</button>
+                    <button id="btn-cancelar-bloqueio">Não</button>
+                </div>
             </div>
         </div>
     `)

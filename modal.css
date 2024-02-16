@@ -64,6 +64,39 @@
     z-index: 2;
 }
 
+#btn-confirmar-exclusao{
+    padding: 6px 12px;
+    border-radius: 2px;
+    background-color: #007bff;
+    border: none;
+    color: #ffff;
+}
+
+#btn-cancelar-exclusao{
+    padding: 6px;
+    border-radius: 2px;
+    background-color: #818181;
+    border: none;
+    color: #ffff;
+}
+
+
+#btn-confirmar-bloqueio{
+    padding: 6px 12px;
+    border-radius: 2px;
+    background-color: #007bff;
+    border: none;
+    color: #ffff;
+}
+
+#btn-cancelar-bloqueio{
+    padding: 6px;
+    border-radius: 2px;
+    background-color: #818181;
+    border: none;
+    color: #ffff;
+}
+
 .modal p{
     font-size: 12px;
     color: rgb(0, 0, 0);
