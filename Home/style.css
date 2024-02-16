@@ -68,7 +68,12 @@ li {
     max-width: 300px;
 }
 
-
+.preview{
+    height: 100px;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
 li img {
     width: 100%;
     height: auto;

@@ -9,9 +9,8 @@ async function gettela_receita(){
     const res = await fetch(`${baseURL}/receita/${id}`)
     const receita = await res.json()
     console.log(receita)
-
-    receita.forEach(element => {
-        console.log(element)
+    console.log(id)
+    const ul = document.querySelector('ul')
         ul.insertAdjacentHTML("beforeend",`
         <li>
             <div>
@@ -21,11 +20,10 @@ async function gettela_receita(){
                     </h3>
             </div>
                 <img src="https://s2-casavogue.glbimg.com/GRF9KCq-1hiz5uSs-xX9Go_KqIc=/0x0:2048x1365/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d72fd4bf0af74c0c89d27a5a226dbbf8/internal_photos/bs/2022/p/X/eb4KQdToys327cGqnRGg/receita-ceboloni-bacon.jpg" alt="Receita de Hambúrger Artesanal">
-                <div class="botao" id="desc${id}">
-                                                  
+                <div class="descricao" id="desc${id}">
+                <p>${receita.descricao}</p>                                   
                 </div>
         </li>`)  
-    })
 }
 gettela_receita()
 

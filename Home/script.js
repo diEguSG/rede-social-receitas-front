@@ -72,7 +72,7 @@ async function getreceita(){
         btn_ver_mais.addEventListener("click",()=>{
         btn_ver_mais.setAttribute("style","display:none;")
         const div = document.getElementById(`desc${element.id}`)
-        div.insertAdjacentHTML("beforeend", `  <li><p>${element.descricao}</p></li> `)})
+        div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${element.descricao}</p></li> `)})
 
 
         const btncurtir = document.getElementById(`likeBtn${element.id}`)
