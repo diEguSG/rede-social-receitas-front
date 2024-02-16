@@ -4,7 +4,6 @@ const token = localStorage.getItem("@token-usuario");
 const myHeaders = {
     "Content-Type": "application/json"
 }
-
 if(!token){
     window.location.replace("../login/index.html");
 }
@@ -62,7 +61,20 @@ async function getreceita(){
                         <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>                        
                         <button class="vermais" id="ver${element.id}">Ver Mais</button>                              
                     </div>
-        </li>`);
+        </li>`)
+        const imgReceita = document.querySelector(`#img-perfil-receita${element.id}`)
+        imgReceita.addEventListener("click",()=>{
+            console.log(element.id)
+            localStorage.setItem("seleciona_receita", element.id)
+            location.href = "/tela_receita"
+        })
+        const btn_ver_mais = document.getElementById(`ver${element.id}`)
+        btn_ver_mais.addEventListener("click",()=>{
+        btn_ver_mais.setAttribute("style","display:none;")
+        const div = document.getElementById(`desc${element.id}`)
+        div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${element.descricao}</p></li> `)})
+
+
         const btncurtir = document.getElementById(`likeBtn${element.id}`)
         btncurtir.addEventListener("click", () => {
             const curtido = localStorage.getItem(`likeCount${element.id}`)
