@@ -41,7 +41,9 @@ async function descurtir(id) {
 
 async function getreceita(){
     const res = await fetch(`${baseURL}/receita`)
+
     const receita = await res.json()
+    localStorage.setItem("receitas",JSON.stringify(receita))
     const ul = document.querySelector("ul")
     ul.innerHTML=""
     receita.forEach(element => {
@@ -49,7 +51,7 @@ async function getreceita(){
         ul.insertAdjacentHTML("beforeend",`
         <li>
             <div>
-                <img src="https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" alt=""class="fotoperfil">
+                <img id="img-perfil-receita${element.id}"src="https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" alt=""class="fotoperfil">
                     <h3>
                          Hambúrger
                     </h3>
