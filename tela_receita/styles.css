@@ -67,7 +67,11 @@ li {
   padding: 50px;
   max-width: 600px;
 }
-
+li a{
+  background-color: #ddd;
+  
+  font-size: 15px;
+}
 
 li img {
   width: 100%;

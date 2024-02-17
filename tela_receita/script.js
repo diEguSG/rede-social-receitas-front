@@ -13,6 +13,7 @@ async function gettela_receita(){
     const ul = document.querySelector('ul')
         ul.insertAdjacentHTML("beforeend",`
         <li>
+            <a href="/Home">Voltar</a>
             <div>
                 <img id="img-perfil-receita${id}"src="https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" alt=""class="fotoperfil">
                     <h3>
