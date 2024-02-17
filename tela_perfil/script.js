@@ -3,7 +3,7 @@ import {modal_atualizar_cadastro} from "../atualizar_cadastro/script.js";
 import {modal_confirmar_bloqueio, modal_confirmar_exclusao} from "../modal.js";
 import {myHeaders} from "../headers.js";
 
-const admin = localStorage.getItem("@tipo-usuario")
+const admin = localStorage.getItem("@tipo-usuario");
 
 async function carregarTelaPerfil(){
     
@@ -20,10 +20,14 @@ async function carregarTelaPerfil(){
         const res_json = await res.json();
         
         usuario.id_usuario = res_json.id_usuario;
+        usuario.outro_perfil = true;
     }
     else{
         usuario.id_usuario = localStorage.getItem("@id-usuario"); 
+        usuario.outro_perfil = false;  
     }
+
+    console.log(usuario);
 
     const usuario_json = JSON.stringify(usuario);
 
@@ -55,7 +59,8 @@ async function carregarTelaPerfil(){
             <div class="div-detalhes-usuario">
                 <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
                 <p id="p-contador-curtidas">${dados_receita.curtida} Curtidas</p>
-                <button id="btn-editar-perfil">Editar Perfil</button>
+                ${usuario.outro_perfil == true ? "" : "<button id='btn-editar-perfil'>Editar Perfil</button>"}
+                
                 <div id="icone-bloquear-${dados_usuario.id}">
                     ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
                 </div>
@@ -64,12 +69,13 @@ async function carregarTelaPerfil(){
         </div>
     `);
     
-    const btn_editar_perfil = document.querySelector("#btn-editar-perfil");
+    if(!usuario.outro_perfil){
+        const btn_editar_perfil = document.querySelector("#btn-editar-perfil");
 
-    btn_editar_perfil.addEventListener('click', ()=>{
-        modal_atualizar_cadastro();
-    })
-
+        btn_editar_perfil.addEventListener('click', ()=>{
+            modal_atualizar_cadastro();
+        })
+    }
 
     const img_bloquear_perfil = document.getElementById(`icone-bloquear-${dados_usuario.id}`)
     img_bloquear_perfil.classList.add("icone-bloquear")
@@ -108,8 +114,10 @@ async function descurtir(id) {
 async function carregarPostagens(){
 
     const usuario = {
-        id_usuario:  localStorage.getItem("@id-usuario")
+        id_usuario: id_perfil;
     }
+
+    console.log(usuario);
 
     const usuario_json = JSON.stringify(usuario);
 
