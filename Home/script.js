@@ -49,7 +49,7 @@ async function getreceita(){
     localStorage.setItem("receitas",JSON.stringify(receitas))
     const ul = document.querySelector("ul")
     ul.innerHTML=""
-    receitas.forEach(receita => {
+    receitas.forEach(element => {
         
         ul.insertAdjacentHTML("beforeend",`
         <li>
@@ -77,22 +77,22 @@ async function getreceita(){
             location.href = "/tela_receita"
         });
 
-        const btn_ver_mais = document.getElementById(`ver${receita.id}`)
+        const btn_ver_mais = document.getElementById(`ver${element.id}`)
         btn_ver_mais.addEventListener("click",()=>{
             btn_ver_mais.setAttribute("style","display:none;")
-            const div = document.getElementById(`desc${receita.id}`)
-            div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${receita.descricao}</p></li> `)
+            const div = document.getElementById(`desc${element.id}`)
+            div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${element.descricao}</p></li> `)
         });
 
 
-        const btncurtir = document.getElementById(`likeBtn${receita.id}`)
+        const btncurtir = document.getElementById(`likeBtn${element.id}`)
         btncurtir.addEventListener("click", () => {
-            const curtido = localStorage.getItem(`likeCount${receita.id}`)
+            const curtido = localStorage.getItem(`likeCount${element.id}`)
             if (curtido) {
-                descurtir(receita.id);
+                descurtir(element.id);
                 btncurtir.classList.remove('curtido');
             } else {
-                curtir(receita.id);
+                curtir(element.id);
                 btncurtir.classList.add('curtido');
             }
         });
