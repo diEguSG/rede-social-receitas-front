@@ -2,6 +2,11 @@ import {baseURL} from "../conexao_servidor.js";
 import {myHeaders} from "../headers.js"
 
 const token = localStorage.getItem("@token-usuario");
+const seleciona_receita = localStorage.getItem("seleciona_receita");
+
+if(seleciona_receita != null){
+    localStorage.removeItem("seleciona_receita");
+}
 
 if(!token){
     window.location.replace("../login/index.html");
@@ -69,7 +74,7 @@ async function getreceita(){
         imgReceita.addEventListener("click",()=>{
             console.log(receita.id)
             localStorage.setItem("seleciona_receita", receita.id)
-            location.href = "/tela_receita"
+            window.location.href = '../tela_perfil/index.html';
         });
 
         const btn_ver_mais = document.getElementById(`ver${receita.id}`)

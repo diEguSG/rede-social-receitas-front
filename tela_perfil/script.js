@@ -7,8 +7,22 @@ const admin = localStorage.getItem("@tipo-usuario")
 
 async function carregarTelaPerfil(){
     
-    const usuario = {
-        id_usuario: localStorage.getItem("@id-usuario")
+    const usuario = {}
+    const receita = localStorage.getItem("seleciona_receita");
+
+    if(receita){
+        const res = await fetch(`${baseURL}/receita/${receita}`,
+        {
+            headers: myHeaders,
+            method: "GET",
+        });
+
+        const res_json = await res.json();
+        
+        usuario.id_usuario = res_json.id_usuario;
+    }
+    else{
+        usuario.id_usuario = localStorage.getItem("@id-usuario"); 
     }
 
     const usuario_json = JSON.stringify(usuario);
@@ -22,7 +36,7 @@ async function carregarTelaPerfil(){
 
     const res_receita = await fetch(`${baseURL}/receita_usuario/${usuario.id_usuario}`,{
         headers: myHeaders,
-        method: "PATCH"
+        method: "GET"
     })
 
     const res_usuario_json = await res_usuario.json();
