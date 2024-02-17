@@ -1,6 +1,8 @@
+// import moment from "moment";
+// import moment from "/moment/moment.js";
+
 import {baseURL} from "../conexao_servidor.js";
 import {myHeaders} from "../headers.js"
-
 const token = localStorage.getItem("@token-usuario");
 
 if(!token){
@@ -50,15 +52,15 @@ async function getreceita(){
     const ul = document.querySelector("ul")
     ul.innerHTML=""
     receitas.forEach(element => {
-        
+        //   const data =moment(element.data_criacao).format('MMMM Do YYYY, h:mm:ss a') 
         ul.insertAdjacentHTML("beforeend",`
         <li>
         <div class="div-pai">
         <div class="div-avatar_name">
         <img id="img-perfil-receita${element.id}" src="https://th.bing.com/th/id/OIP.z1YYkhwNUvuguaRfYS-xXAHaF6?rs=1&pid=ImgDetMain" alt="" class="fotoperfil">
         <span class="nome-usuario">Ana Maria Braga</span>
+       
         </div>
-        
         <h3>
             Hambúrger
         </h3>
