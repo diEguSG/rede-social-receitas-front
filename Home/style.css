@@ -19,6 +19,7 @@ header {
     flex-wrap: wrap;
     position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Espaçamento abaixo do header */
 }
 
 header div {
@@ -52,13 +53,23 @@ header img {
     height: 50px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 10px; /* Espaçamento à direita da imagem de perfil */
 }
-
+header img#img-perfil-usuario {
+    max-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 10px; /* Espaçamento à direita da imagem de perfil */
+    margin-bottom: -5px; /* Margem negativa para mover um pouco acima da nav */
+}
 nav {
     width: 100%;
     text-align: center;
     background: linear-gradient(to right, #2980b9, #1a5276); /* Gradiente azul escuro */
     padding: 10px 0;
+    margin-top: 10px; /* Adicione uma margem superior aqui */
 }
 
 nav a {
@@ -83,7 +94,10 @@ ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    justify-content: space-around; /* Espaçamento entre os cards */
     flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 li {
@@ -93,6 +107,8 @@ li {
     max-width: 300px;
     background-color: #fff;
     transition: transform 0.3s;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para realce */
 }
 
 li:hover {
@@ -123,7 +139,7 @@ li p {
 
 li button {
     background-color: #3498db;
-    color: #000000;
+    color: #3a3a3a;
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -139,7 +155,10 @@ li div {
     align-items: center;
     gap: 8px;
 }
-
+.div-pai{
+    flex-direction: column;
+    align-items: normal;
+}
 .fotoperfil {
     width: 45px;
     height: 45px;
@@ -150,12 +169,21 @@ li div {
     flex-wrap: wrap;
     gap: 8px;
     justify-content: space-between;
+    transition: background-color 0.3s, color 0.3s;
 }
+.link a {
+    display: flex;
+    flex-wrap: wrap;
+    color: #3a3a3a;
+    gap: 8px;
+    justify-content: space-between;
+    transition: background-color 0.3s, color 0.3s;
+}    
 
 .vermais {
     width: 100%;
     background-color: #3498db;
-    color: #000000;
+    color: #3a3a3a;
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -185,6 +213,7 @@ li div {
         margin-right: 0;
     }
 }
+
 
 
 
