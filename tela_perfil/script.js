@@ -21,21 +21,18 @@ async function carregarTelaPerfil(){
         
         usuario.id_usuario = res_json.id_usuario;
         usuario.outro_perfil = true;
+        localStorage.setItem("@id-perfil", usuario.id_usuario);
     }
     else{
         usuario.id_usuario = localStorage.getItem("@id-usuario"); 
-        usuario.outro_perfil = false;  
+        usuario.outro_perfil = false; 
+        localStorage.setItem("@id-perfil", usuario.id_usuario); 
     }
 
-    console.log(usuario);
-
-    const usuario_json = JSON.stringify(usuario);
-
-    const res_usuario = await fetch(`${baseURL}/atualizar_cadastro`,
+    const res_usuario = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
     {
         headers: myHeaders,
-        method: "POST",
-        body: usuario_json
+        method: "GET"
     });
 
     const res_receita = await fetch(`${baseURL}/receita_usuario/${usuario.id_usuario}`,{
@@ -54,7 +51,7 @@ async function carregarTelaPerfil(){
     div.insertAdjacentHTML("afterbegin", `
         <div class="profile-header">
 
-            <img src="" alt="Usuário">
+            <img src="${dados_usuario.imagem_perfil}" alt="Usuário">
 
             <div class="div-detalhes-usuario">
                 <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
@@ -93,9 +90,7 @@ async function curtir(id) {
         body:body,
         headers:myHeaders
     })
-    await carregarPostagens();
-
-    console.log("descurtir");
+        //await carregarPostagens();
 }
 async function descurtir(id) {
     localStorage.removeItem(`likeCount${id}`);
@@ -106,15 +101,13 @@ async function descurtir(id) {
             body: body,
             headers: myHeaders
         });
-        await carregarPostagens();
-    
-    console.log("descurtir");
+        //await carregarPostagens();
 }
 
 async function carregarPostagens(){
 
     const usuario = {
-        id_usuario: id_perfil;
+        id_usuario: localStorage.getItem("@id-perfil")
     }
 
     console.log(usuario);
@@ -138,21 +131,22 @@ async function carregarPostagens(){
             ul.insertAdjacentHTML("beforeend",`
                 <li id="${receita.id}">
 
-                    <h3>
-                        ${receita.titulo}
-                    </h3>     
+                    </div>
+                        <h3>
+                            ${receita.titulo}
+                        </h3>
+                    </div>  
 
-                    <div id="icone-lixeira-${receita.id}">
-                    
+                    <div class="icone-lixeira" id="icone-lixeira-${receita.id}">
                         ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/3976/3976956.png' alt='icone-lixeira'>" : ""}
                     </div>
 
-                    <img src="${receita.imagem} alt="Imagem da Receita" id="img-receita">
+                    <img src="${receita.imagem}" alt="Imagem da Receita" id="img-receita">
 
                     <div class="botao" id="div-descricao-${receita.id}">
-                        <button><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
+                        <button class="link"><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
                         <button id="btn-curtida-${receita.id}">Curtir <span id="contador-curtida">0</span></button>                        
-                        <button class="ver-mais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
+                        <button class="vermais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
                     </div>
                 </li>`);
 
@@ -161,7 +155,7 @@ async function carregarPostagens(){
             btn_ver_mais.addEventListener("click",()=>{
                 btn_ver_mais.setAttribute("style","display:none;")
                 const div = document.getElementById(`div-descricao-${receita.id}`)
-                div.insertAdjacentHTML("beforeend", `  <li><p>${receita.descricao}</p></li>`)  
+                div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${receita.descricao}</p></li>`)  
             });
 
             const btn_curtir = document.getElementById(`btn-curtida-${receita.id}`)

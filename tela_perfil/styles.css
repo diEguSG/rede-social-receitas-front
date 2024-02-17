@@ -55,50 +55,111 @@ body {
   margin-bottom: 20px;
 }
 
-#lista-receitas-criadas {
+ul {
   list-style: none;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around; /* Espaçamento entre os cards */
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-#lista-receitas-criadas li {
+li {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  max-width: 300px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin-bottom: 15px;
-  overflow: hidden;
+  transition: transform 0.3s;
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para realce */
 }
 
-#lista-receitas-criadas li:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease-in-out;
+li:hover {
+  transform: translateY(-5px);
 }
 
 #img-receita {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-bottom: 2px solid #ccc;
-  margin-top: 2px;
+  height: auto;
 }
 
-.recipe-details {
-  padding: 15px;
-}
-
-h3 {
-  margin: 0;
-  color: #333;
+li h3 {
   position: absolute;
+  font-size: 18px;
+  text-align: center;
 }
 
-.recipe-details p {
-  color: #777;
-  margin: 10px 0;
+li p {
+  margin-top: 10px;
+  text-align: center;
+}
+.preview{
+  height: 100px;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+li button {
+  background-color: #3498db;
+  color: #3a3a3a;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+li button:hover {
+  background-color: #2980b9;
+}
+
+li div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.botao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  transition: background-color 0.3s, color 0.3s;
+}
+.link a {
+  display: flex;
+  flex-wrap: wrap;
+  color: #3a3a3a;
+  gap: 8px;
+  justify-content: space-between;
+  transition: background-color 0.3s, color 0.3s;
+}    
+
+.vermais {
+  width: 100%;
+  background-color: #3498db;
+  color: #3a3a3a;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.vermais:hover {
+  background-color: #2980b9;
+  color: #fff;
 }
 
 .icone-bloquear img{
   border: none;
   width: 25px;
+  height: 25px;
+}
+
+.icone-lixeira img{
+  border: none;
   height: 25px;
 }
 
@@ -108,9 +169,4 @@ h3 {
   display: flex;
   flex-wrap: wrap-reverse;
   flex-direction: row-reverse;
-}
-
-.icone-lixeira img{
-  border: none;
-  height: 25px;
 }

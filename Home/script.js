@@ -4,8 +4,9 @@
 import {baseURL} from "../conexao_servidor.js";
 import {myHeaders} from "../headers.js"
 const token = localStorage.getItem("@token-usuario");
-const id_usuario = localStorage.getItem("@id_usuario");
+const id_usuario = localStorage.getItem("@id-usuario");
 const seleciona_receita = localStorage.getItem("seleciona_receita");
+localStorage.removeItem("@id-perfil");
 
 if(seleciona_receita != null){
     localStorage.removeItem("seleciona_receita");
@@ -41,39 +42,47 @@ async function descurtir(id) {
         headers: myHeaders
     });
     await getreceita();
-
-    console.log("descurtir");
 }
 
 async function getreceita(){
     
-    const res = await fetch(`${baseURL}/receita`, 
+    const res_receita = await fetch(`${baseURL}/receita`, 
     {
         headers: myHeaders,
         method: "GET"
     })
 
-    const elements = await res.json()
+    const elements = await res_receita.json()
     localStorage.setItem("receitas",JSON.stringify(elements))
     const ul = document.querySelector("ul")
     ul.innerHTML=""
-    receitas.forEach(element => {
+    elements.forEach(async (element) => {
+
+        const res = await fetch(`${baseURL}/cadastro/${element.id_usuario}`,
+        {
+            headers: myHeaders,
+            method: "GET"
+        })  
+
+        const res_usuario = await res.json();
         //   const data =moment(element.data_criacao).format('MMMM Do YYYY, h:mm:ss a') 
+
+        if(element.id_usuario != id_usuario){
         ul.insertAdjacentHTML("beforeend",`
         <li>
         <div class="div-pai">
         <div class="div-avatar_name">
-        <img id="img-perfil-receita${element.id}" src="https://th.bing.com/th/id/OIP.z1YYkhwNUvuguaRfYS-xXAHaF6?rs=1&pid=ImgDetMain" alt="" class="fotoperfil">
-        <span class="nome-usuario">Ana Maria Braga</span>
+        <img id="img-perfil-receita${element.id}" src="${res_usuario.usuario.imagem_perfil}" alt="" class="fotoperfil">
+        <span class="nome-usuario">${res_usuario.usuario.nome}</span>
        
         </div>
         <h3>
-            Hambúrger
+            ${element.titulo}
         </h3>
         </div>
-        <img src="https://s2-casavogue.glbimg.com/GRF9KCq-1hiz5uSs-xX9Go_KqIc=/0x0:2048x1365/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d72fd4bf0af74c0c89d27a5a226dbbf8/internal_photos/bs/2022/p/X/eb4KQdToys327cGqnRGg/receita-ceboloni-bacon.jpg" alt="Receita de Hambúrger Artesanal">
+        <img src="${element.imagem}" alt="Imagem da Receita ${element.titulo}">
         <div class="botao" id="desc${element.id}">
-        <button class="link"><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>
+        <button class="link"><a href="https://api.whatsapp.com/send?text=[${element.titulo}]">Compartilhar</a></button>
         <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>
         <button class="vermais" id="ver${element.id}">Ver Mais</button>
         </div>
@@ -82,7 +91,7 @@ async function getreceita(){
         imgReceita.addEventListener("click", () => {
             console.log(element.id)
             localStorage.setItem("seleciona_receita", element.id)
-            location.href = "/tela_receita"
+            window.location.href = '../tela_perfil/index.html';
         });
 
         const btn_ver_mais = document.getElementById(`ver${element.id}`)
@@ -104,6 +113,7 @@ async function getreceita(){
                 btncurtir.classList.add('curtido');
             }
         });
+        }
     })
 }
 getreceita()
