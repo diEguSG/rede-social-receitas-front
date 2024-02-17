@@ -1,10 +1,9 @@
-import { baseURL } from "../conexao_servidor.js"
+import {baseURL} from "../conexao_servidor.js";
+import {myHeaders} from "../headers.js"
 
 const token = localStorage.getItem("@token-usuario");
-const myHeaders = {
-    "Content-Type": "application/json"
-}
-if (!token) {
+
+if(!token){
     window.location.replace("../login/index.html");
 }
 
@@ -38,16 +37,21 @@ async function descurtir(id) {
     console.log("descurtir");
 }
 
-async function getreceita() {
-    const res = await fetch(`${baseURL}/receita`)
+async function getreceita(){
+    
+    const res = await fetch(`${baseURL}/receita`, 
+    {
+        headers: myHeaders,
+        method: "GET"
+    })
 
-    const receita = await res.json()
-    localStorage.setItem("receitas", JSON.stringify(receita))
+    const receitas = await res.json()
+    localStorage.setItem("receitas",JSON.stringify(receitas))
     const ul = document.querySelector("ul")
-    ul.innerHTML = ""
-    receita.forEach(element => {
-        console.log(element)
-        ul.insertAdjacentHTML("beforeend", `
+    ul.innerHTML=""
+    receitas.forEach(receita => {
+        
+        ul.insertAdjacentHTML("beforeend",`
         <li>
         <div class="div-pai">
         <div class="div-avatar_name">
@@ -71,23 +75,24 @@ async function getreceita() {
             console.log(element.id)
             localStorage.setItem("seleciona_receita", element.id)
             location.href = "/tela_receita"
-        })
-        const btn_ver_mais = document.getElementById(`ver${element.id}`)
-        btn_ver_mais.addEventListener("click", () => {
-            btn_ver_mais.setAttribute("style", "display:none;")
-            const div = document.getElementById(`desc${element.id}`)
-            div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${element.descricao}</p></li> `)
-        })
+        });
+
+        const btn_ver_mais = document.getElementById(`ver${receita.id}`)
+        btn_ver_mais.addEventListener("click",()=>{
+            btn_ver_mais.setAttribute("style","display:none;")
+            const div = document.getElementById(`desc${receita.id}`)
+            div.insertAdjacentHTML("beforeend", `  <li class="preview"><p>${receita.descricao}</p></li> `)
+        });
 
 
-        const btncurtir = document.getElementById(`likeBtn${element.id}`)
+        const btncurtir = document.getElementById(`likeBtn${receita.id}`)
         btncurtir.addEventListener("click", () => {
-            const curtido = localStorage.getItem(`likeCount${element.id}`)
+            const curtido = localStorage.getItem(`likeCount${receita.id}`)
             if (curtido) {
-                descurtir(element.id);
+                descurtir(receita.id);
                 btncurtir.classList.remove('curtido');
             } else {
-                curtir(element.id);
+                curtir(receita.id);
                 btncurtir.classList.add('curtido');
             }
         });
