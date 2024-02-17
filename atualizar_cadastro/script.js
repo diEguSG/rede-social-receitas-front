@@ -35,7 +35,7 @@ export async function modal_atualizar_cadastro(){
         <div class="modal-src">
             <form method="post" class="modal" id="modal">
             
-                <h1>Atualizar Cadastro</h1>
+                <h1 id="h1-atualizar-cadastro">Atualizar Cadastro</h1>
 
                 <div id="div-inputs">
                     <label for="inp-nome">Nome</label>
