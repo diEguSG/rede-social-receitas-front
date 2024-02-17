@@ -2,7 +2,7 @@
 // import moment from "/moment/moment.js";
 
 import {baseURL} from "../conexao_servidor.js";
-import {myHeaders} from "../headers.js"
+import {myHeaders} from "../headers.js";
 const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
 const seleciona_receita = localStorage.getItem("seleciona_receita");

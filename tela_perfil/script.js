@@ -90,7 +90,7 @@ async function curtir(id) {
         body:body,
         headers:myHeaders
     })
-        //await carregarPostagens();
+        await carregarPostagens();
 }
 async function descurtir(id) {
     localStorage.removeItem(`likeCount${id}`);
@@ -101,7 +101,7 @@ async function descurtir(id) {
             body: body,
             headers: myHeaders
         });
-        //await carregarPostagens();
+        await carregarPostagens();
 }
 
 async function carregarPostagens(){
@@ -124,8 +124,8 @@ async function carregarPostagens(){
     if(res.status == 200){
         const res_json = await res.json();
         const receitas = res_json.receita;
-        const ul = document.querySelector("ul")
-        
+        const ul = document.querySelector("ul");
+        ul.innerHTML="";
         receitas.forEach(receita => {
             
             ul.insertAdjacentHTML("beforeend",`
@@ -145,7 +145,7 @@ async function carregarPostagens(){
 
                     <div class="botao" id="div-descricao-${receita.id}">
                         <button class="link"><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
-                        <button id="btn-curtida-${receita.id}">Curtir <span id="contador-curtida">0</span></button>                        
+                        <button id="btn-curtida-${receita.id}">Curtir <span id="contador-curtida">${receita.curtida}</span></button>                        
                         <button class="vermais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
                     </div>
                 </li>`);

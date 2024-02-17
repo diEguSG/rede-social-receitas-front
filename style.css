@@ -1,65 +1,101 @@
 *{
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-ul,li{
-    list-style: none;
-}
-:root{
-    --cor_primaria:#cf535b;
-    --cor_primaria-100:#e88a66;
-    --cor_primaria-200:#c9485a;
-    --cor_primaria-300:#dd6f62;
+
+:root {
+    --cor_primaria: #fc782c;
+    --cor_primaria-100: #f55353;
+    --cor_primaria-200: #f55353;
+    --cor_primaria-300: #f55353;
+    --cor_secundaria: #000000;
 }
 
-main{
+main {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
-    /* background-color:  var(--cor_primaria-300 ) ;
-     */
+    background: url("https://th.bing.com/th/id/R.59e199632e19553af5926576b0a04f87?rik=y%2f5iaOXtgcQiFQ&riu=http%3a%2f%2fjoselito.com.br%2fwp-content%2fuploads%2ffundo-receitas-1024x614.jpg&ehk=J2czh6Qm2VMlwPTQ76qjTv1DyjODfMtDtbsgLtp7vJQ%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+    background-position: center;
 }
 
-h1{
-    margin-bottom: 20%;
-}
-
-input{
-    outline: none;
-    border-style: none none solid none;
-    border-width: 1px;
-    width: 250px;
-    height: 25px;  
-}
-
-#bnt-cad-log{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    padding: 30px 42px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    filter: drop-shadow(10px 10px 5px gray);
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid var(--cor_primaria);
 }
 
-button{
+h1 {
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+input {
+    outline: none;
     border: none;
-    width: 250px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 15px;
+    padding: 10px;
+    transition: border-bottom-color 0.3s ease-in-out;
+}
+
+input:hover {
+    border-bottom-color: var(--cor_primaria);
+}
+
+button, a {
+    display: inline-block;
+    border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 12px;
     text-transform: uppercase;
-    background-color: #f55353;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+button, a:hover {
+    background-color: var(--cor_primaria-200);
     color: white;
 }
 
-a{
-    text-decoration: none;
-    color: #ffff;
+button {
+    width: 100%;
+    margin-top: 20px;
 }
 
-p{
-    margin-top: 20%;
+#info-cad {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--cor_secundaria);
 }
 
+#btn-entrar:hover {
+    background-color: #000000;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    input {
+        height: 25px;
+    }
+
+    button, a {
+        margin-top: 15%;
+    }
+
+    #info-cad {
+        margin-top: 20%;
+    }
+}
