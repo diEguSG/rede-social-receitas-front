@@ -65,7 +65,7 @@ async function getreceita(){
         </div>
         <img src="https://s2-casavogue.glbimg.com/GRF9KCq-1hiz5uSs-xX9Go_KqIc=/0x0:2048x1365/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_d72fd4bf0af74c0c89d27a5a226dbbf8/internal_photos/bs/2022/p/X/eb4KQdToys327cGqnRGg/receita-ceboloni-bacon.jpg" alt="Receita de Hambúrger Artesanal">
         <div class="botao" id="desc${element.id}">
-        <button><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>
+        <button class="link"><a href="https://api.whatsapp.com/send?text=[Hambúrger Caseiro]">Compartilhar</a></button>
         <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>
         <button class="vermais" id="ver${element.id}">Ver Mais</button>
         </div>
