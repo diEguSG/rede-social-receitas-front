@@ -1,6 +1,6 @@
 import {myHeaders} from "../headers.js"
 import {baseURL} from "../conexao_servidor.js";
-import {myHeaders} from "../headers.js";
+
 const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
 const seleciona_receita = localStorage.getItem("seleciona_receita");
@@ -54,7 +54,7 @@ async function getreceita(){
     localStorage.setItem("receitas",JSON.stringify(elements))
     const ul = document.querySelector("ul")
     ul.innerHTML=""
-    receitas.forEach(async (element) => {
+    elements.forEach(async (element) => {
        console.log(element)
        const res = await fetch(`${baseURL}/cadastro/${element.id_usuario}`,
         {
