@@ -3,12 +3,6 @@ import {baseURL} from "../conexao_servidor.js";
 
 const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
-const seleciona_receita = localStorage.getItem("seleciona_receita");
-localStorage.removeItem("@id-perfil");
-
-if(seleciona_receita != null){
-    localStorage.removeItem("seleciona_receita");
-}
 
 if(!token){
     window.location.replace("../login/index.html");
@@ -89,7 +83,8 @@ async function getreceita(){
         const imgReceita = document.querySelector(`#img-perfil-receita${element.id}`)
         imgReceita.addEventListener("click", () => {
             console.log(element.id)
-            localStorage.setItem("seleciona_receita", element.id)
+            localStorage.setItem("seleciona_receita", element.id);
+            localStorage.setItem("@seleciona-id-usuario-receita", element.id_usuario);
             window.location.href = '../tela_perfil/index.html';
         });
 
@@ -114,5 +109,10 @@ async function getreceita(){
         });
         }
     )
+    const btn_sair = document.querySelector("#img-icone-sair");
+        btn_sair.addEventListener("click", () => {
+            window.location.href = '../index.html';
+            localStorage.clear();
+    })
 }
 getreceita()
