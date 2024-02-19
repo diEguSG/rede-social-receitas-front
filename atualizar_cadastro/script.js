@@ -12,11 +12,10 @@ async function carregar_dados_usuario(){
 
     const usuario_json = JSON.stringify(usuario);
 
-    const res = await fetch(`${baseURL}/atualizar_cadastro`,
+    const res = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
     {
         headers: myHeaders,
-        method: "POST",
-        body: usuario_json
+        method: "GET"
     })
 
     const res_json = await res.json();
