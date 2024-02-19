@@ -67,7 +67,7 @@ export function modal_confirmar_exclusao(id, situacao){
             });
 
             if(res.status == 204){
-                location.reload();
+                window.location.reload();
             }
 
         })

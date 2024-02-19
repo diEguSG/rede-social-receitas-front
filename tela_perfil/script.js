@@ -7,26 +7,13 @@ const admin = localStorage.getItem("@tipo-usuario");
 
 async function carregarTelaPerfil(){
     
-    const usuario = {}
-    const receita = localStorage.getItem("seleciona_receita");
+    const usuario = {id_usuario:localStorage.getItem("@seleciona-id-usuario-receita")}
 
-    if(receita){
-        const res = await fetch(`${baseURL}/receita/${receita}`,
-        {
-            headers: myHeaders,
-            method: "GET",
-        });
-
-        const res_json = await res.json();
-        
-        usuario.id_usuario = res_json.id_usuario;
+    if(usuario){
         usuario.outro_perfil = true;
-        localStorage.setItem("@id-perfil", usuario.id_usuario);
     }
-    else{
-        usuario.id_usuario = localStorage.getItem("@id-usuario"); 
+    else{ 
         usuario.outro_perfil = false; 
-        localStorage.setItem("@id-perfil", usuario.id_usuario); 
     }
 
     const res_usuario = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
@@ -47,7 +34,7 @@ async function carregarTelaPerfil(){
     const dados_receita = res_receita_json.receita;
 
     const div = document.querySelector(".profile-container");
-
+    
     div.insertAdjacentHTML("afterbegin", `
         <div class="profile-header">
 
@@ -61,9 +48,11 @@ async function carregarTelaPerfil(){
                 <div id="icone-bloquear-${dados_usuario.id}">
                     ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
                 </div>
+                
             </div>
 
         </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/1280/1280115.png" alt="Icone Voltar" id="img-icone-voltar" class="icone-voltar">
     `);
     
     if(!usuario.outro_perfil){
@@ -72,14 +61,21 @@ async function carregarTelaPerfil(){
         btn_editar_perfil.addEventListener('click', ()=>{
             modal_atualizar_cadastro();
         })
-    }
+    };
 
-    const img_bloquear_perfil = document.getElementById(`icone-bloquear-${dados_usuario.id}`)
-    img_bloquear_perfil.classList.add("icone-bloquear")
+    const img_bloquear_perfil = document.getElementById(`icone-bloquear-${dados_usuario.id}`);
+    img_bloquear_perfil.classList.add("icone-bloquear");
 
     img_bloquear_perfil.addEventListener('click', ()=>{
         bloquearUsuario(dados_usuario.id)
-    })
+    });
+
+    const btn_voltar = document.querySelector("#img-icone-voltar");
+        btn_voltar.addEventListener("click", () => {
+            window.location.href = "../home/index.html";
+        });
+
+    carregarPostagens();
 }
 
 async function curtir(id) {
@@ -90,6 +86,7 @@ async function curtir(id) {
         body:body,
         headers:myHeaders
     })
+        
         await carregarPostagens();
 }
 async function descurtir(id) {
@@ -101,16 +98,15 @@ async function descurtir(id) {
             body: body,
             headers: myHeaders
         });
+        
         await carregarPostagens();
 }
 
 async function carregarPostagens(){
 
     const usuario = {
-        id_usuario: localStorage.getItem("@id-perfil")
+        id_usuario: localStorage.getItem("@seleciona-id-usuario-receita")
     }
-
-    console.log(usuario);
 
     const usuario_json = JSON.stringify(usuario);
 
@@ -182,12 +178,11 @@ async function carregarPostagens(){
 };
 
 async function bloquearUsuario(id){
-    modal_confirmar_bloqueio(id,"admin")
+    modal_confirmar_bloqueio(id, "admin");
 }
 
 async function deletarPostagem(id){
-    modal_confirmar_exclusao(id, "admin")
+    modal_confirmar_exclusao(id, "admin");
 }
 
 carregarTelaPerfil();
-carregarPostagens();

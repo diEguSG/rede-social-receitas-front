@@ -47,9 +47,7 @@ async function cadastro(){
     const usuario_valido = {
         nome: `${validar_usuario.nome} ${validar_usuario.sobrenome}`,
         email: validar_usuario.email,
-        senha: validar_usuario.senha,
-        id_tipo_usuario: 2,
-        id_situacao_usuario: 1
+        senha: validar_usuario.senha
     }
 
     const usuario_valido_json = JSON.stringify(usuario_valido);
@@ -64,7 +62,7 @@ async function cadastro(){
     if(res.status == 200){
         modal_resposta("Cadastro Realizado com Sucesso!", "ok")
         setTimeout(()=>{
-            window.location.href = '../login/index.html';
+            window.location.href = '../index.html';
         }, 2000)          
     }
     else{
