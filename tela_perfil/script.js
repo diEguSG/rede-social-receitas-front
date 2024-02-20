@@ -19,12 +19,14 @@ async function carregarTelaPerfil(){
         usuario.id_usuario = localStorage.getItem("@id-usuario");
     }
 
-    if(usuario){
+    if(localStorage.getItem("@id-usuario") != localStorage.getItem("@seleciona-id-usuario-receita")){
         usuario.outro_perfil = true;
     }
     else{ 
         usuario.outro_perfil = false; 
     }
+
+    console.log(usuario);
 
     const res_usuario = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
     {
