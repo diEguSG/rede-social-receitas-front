@@ -28,6 +28,18 @@ export function modal_resposta(mensagem, situacao){
         }, 2000)
         
     }
+
+    if(situacao == "bloqueio"){
+        const modal = document.querySelector("#modal");
+        modal.insertAdjacentHTML("beforeend", `
+            <p>Qualquer dúvida contatar o e-mail abaixo!</p>
+            <p>admin@admin.com</p>
+        `)
+
+        setTimeout(()=>{
+            body.removeChild(div)
+        }, 2000)
+    }
 }
 
 export function modal_confirmar_exclusao(id, situacao){
