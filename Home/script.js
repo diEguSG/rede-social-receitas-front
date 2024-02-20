@@ -58,7 +58,8 @@ async function getreceita(){
         })  
 
         const res_usuario = await res.json();
-      
+
+        if(element.id_usuario != id_usuario){
         ul.insertAdjacentHTML("beforeend",`
         <li>
         <div class="div-pai">
@@ -81,6 +82,7 @@ async function getreceita(){
         <button class="vermais" id="ver${element.id}">Ver Mais</button>
         </div>
         </li>`)
+
         const imgReceita = document.querySelector(`#img-perfil-receita${element.id}`)
         imgReceita.addEventListener("click", () => {
             console.log(element.id)
@@ -108,6 +110,7 @@ async function getreceita(){
                 btncurtir.classList.add('curtido');
             }
         });
+        }
         }
     )
     const btn_sair = document.querySelector("#img-icone-sair");
