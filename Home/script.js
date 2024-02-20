@@ -11,6 +11,7 @@ if(!token){
 const img_perfil_usuario = document.querySelector("#img-perfil-usuario");
 
 img_perfil_usuario.addEventListener('click', () => {
+    localStorage.setItem("@seleciona-id-usuario-receita", id_usuario);
     window.location.href = '../tela_perfil/index.html';
 })
 

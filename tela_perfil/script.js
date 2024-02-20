@@ -9,6 +9,8 @@ async function carregarTelaPerfil(){
     
     const usuario = {id_usuario:localStorage.getItem("@seleciona-id-usuario-receita")}
 
+    console.log(usuario);
+
     if(usuario){
         usuario.outro_perfil = true;
     }
@@ -34,7 +36,7 @@ async function carregarTelaPerfil(){
     const dados_receita = res_receita_json.receita;
 
     const div = document.querySelector(".profile-container");
-    
+
     div.insertAdjacentHTML("afterbegin", `
         <div class="profile-header">
 
