@@ -49,7 +49,7 @@ async function login(){
     else{
 
         if(res_json.id_situacao_usuario == 2){
-            modal_resposta("Usuário bloqueado", "error");
+            modal_resposta("Usuário bloqueado!", "bloqueio");
             return true;
         }
 

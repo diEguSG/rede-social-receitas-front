@@ -28,6 +28,18 @@ export function modal_resposta(mensagem, situacao){
         }, 2000)
         
     }
+
+    if(situacao == "bloqueio"){
+        const modal = document.querySelector("#modal");
+        modal.insertAdjacentHTML("beforeend", `
+            <p>Qualquer dúvida contatar o e-mail abaixo!</p>
+            <p>admin@admin.com</p>
+        `)
+
+        setTimeout(()=>{
+            body.removeChild(div)
+        }, 2000)
+    }
 }
 
 export function modal_confirmar_exclusao(id, situacao){
@@ -78,13 +90,13 @@ export function modal_confirmar_exclusao(id, situacao){
     }
 }
 
-export function modal_confirmar_bloqueio(id, situacao){
+export function modal_confirmar_bloqueio(id, id_situacao_usuario, situacao){
     const body  = document.querySelector("body");
 
     body.insertAdjacentHTML("afterbegin",`
         <div class="modal-src-resposta">
             <div class="modal-${situacao}" id="modal">
-                <p>Deseja realmente bloquear o usuário?</p>
+            ${id_situacao_usuario == 1 ? "<p>Deseja realmente bloquear o usuário?</p>" : "<p>Deseja realmente desbloquear o usuário?</p>"}
                 <div>
                     <button id="btn-confirmar-bloqueio">Sim</button>
                     <button id="btn-cancelar-bloqueio">Não</button>
@@ -103,9 +115,15 @@ export function modal_confirmar_bloqueio(id, situacao){
         btn_confirmar_bloqueio.addEventListener('click', async ()=>{
             
             const dados_usuario = {
-                id_usuario: id,
-                id_situacao_usuario: 2 
+                id_usuario: id                
             };
+
+            if(id_situacao_usuario == 1){
+                dados_usuario.id_situacao_usuario = 2 
+            }
+            else{
+                dados_usuario.id_situacao_usuario = 1
+            }
 
             const dados_usuario_json = JSON.stringify(dados_usuario);
 

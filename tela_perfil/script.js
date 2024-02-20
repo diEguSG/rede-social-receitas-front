@@ -19,12 +19,14 @@ async function carregarTelaPerfil(){
         usuario.id_usuario = localStorage.getItem("@id-usuario");
     }
 
-    if(usuario){
+    if(localStorage.getItem("@id-usuario") != localStorage.getItem("@seleciona-id-usuario-receita")){
         usuario.outro_perfil = true;
     }
     else{ 
         usuario.outro_perfil = false; 
     }
+
+    console.log(usuario);
 
     const res_usuario = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
     {
@@ -56,7 +58,8 @@ async function carregarTelaPerfil(){
                 ${usuario.outro_perfil == true ? "" : "<button id='btn-editar-perfil'>Editar Perfil</button>"}
                 
                 <div id="icone-bloquear-${dados_usuario.id}">
-                    ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
+                    ${admin == 1 && dados_usuario.id_situacao_usuario == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
+                    ${admin == 1 && dados_usuario.id_situacao_usuario == 2 ? "<button>Desbloquear</button>" : ""}
                 </div>
                 
             </div>
@@ -77,7 +80,7 @@ async function carregarTelaPerfil(){
     img_bloquear_perfil.classList.add("icone-bloquear");
 
     img_bloquear_perfil.addEventListener('click', ()=>{
-        bloquearUsuario(dados_usuario.id)
+        bloquearUsuario(dados_usuario.id, dados_usuario.id_situacao_usuario)
     });
 
     const btn_voltar = document.querySelector("#img-icone-voltar");
@@ -187,8 +190,8 @@ async function carregarPostagens(){
     };
 };
 
-async function bloquearUsuario(id){
-    modal_confirmar_bloqueio(id, "admin");
+async function bloquearUsuario(id, id_situacao_usuario){
+    modal_confirmar_bloqueio(id, id_situacao_usuario, "admin");
 }
 
 async function deletarPostagem(id){
