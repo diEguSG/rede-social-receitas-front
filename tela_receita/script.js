@@ -1,5 +1,12 @@
 import {baseURL} from "../conexao_servidor.js";
 
+const token = localStorage.getItem("@token-usuario")
+
+if(!token){
+    window.location.href = '../index.html';
+}
+
+
 const myHeaders = {
     "Content-Type": "application/json"
 }

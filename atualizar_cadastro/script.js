@@ -1,8 +1,11 @@
 import {baseURL} from "../conexao_servidor.js";
 import {modal_resposta} from "../modal.js";
+import {myHeaders} from "../headers.js"
 
-const myHeaders = {
-    "Content-Type": "application/json"
+const token = localStorage.getItem("@token-usuario")
+
+if(!token){
+    window.location.href = '../index.html';
 }
 
 async function carregar_dados_usuario(){

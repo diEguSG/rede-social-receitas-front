@@ -5,7 +5,7 @@ const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
 
 if(!token){
-    window.location.replace("../login/index.html");
+    window.location.replace("../index.html");
 }
 
 const img_perfil_usuario = document.querySelector("#img-perfil-usuario");

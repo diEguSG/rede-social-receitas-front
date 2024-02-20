@@ -4,12 +4,20 @@ import {modal_confirmar_bloqueio, modal_confirmar_exclusao} from "../modal.js";
 import {myHeaders} from "../headers.js";
 
 const admin = localStorage.getItem("@tipo-usuario");
+const token = localStorage.getItem("@token-usuario");
+
+if(!token){
+    window.location.href = '../index.html';
+}
+
 
 async function carregarTelaPerfil(){
     
     const usuario = {id_usuario:localStorage.getItem("@seleciona-id-usuario-receita")}
 
-    console.log(usuario);
+    if(usuario.id_usuario == null){
+        usuario.id_usuario = localStorage.getItem("@id-usuario");
+    }
 
     if(usuario){
         usuario.outro_perfil = true;
