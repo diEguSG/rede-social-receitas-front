@@ -66,8 +66,11 @@ async function getreceita(){
         
         
         <img id="img-perfil-receita${element.id}" src="${res_usuario.usuario.imagem_perfil}" alt="" class="fotoperfil">
+        <div class="div-nomedata">
         <span class="nome-usuario">${res_usuario.usuario.nome}</span>
         <span class="data_criacao">${element.data_criacao}</span>
+        </div>
+        
        
         </div>
         <h3>
