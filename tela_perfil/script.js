@@ -155,11 +155,12 @@ async function carregarPostagens(){
                         <h3>
                             ${receita.titulo}
                         </h3>
+                        <div class="icone-lixeira" id="icone-lixeira-${receita.id}">
+                            ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/3976/3976956.png' alt='icone-lixeira'>" : ""}
+                        </div>
                     </div>  
 
-                    <div class="icone-lixeira" id="icone-lixeira-${receita.id}">
-                        ${admin == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/3976/3976956.png' alt='icone-lixeira'>" : ""}
-                    </div>
+                    
 
                     <img src="${receita.imagem}" alt="Imagem da Receita" id="img-receita">
 
