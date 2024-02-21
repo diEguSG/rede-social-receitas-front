@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../modal.css">
+    <script type="module" src="./script.js" defer></script>
+</head>
+<body>
+    <main>
+        <form method="post">
+           
+            <h1>CADASTRO</h1>
+
+            <div id="div-inputs">
+                <label for="inp-nome">Nome</label>
+                <input type="text" id="inp-nome">
+
+                <label for="inp-sobrenome">Sobrenome</label>
+                <input type="text" id="inp-sobrenome">
+
+                <label for="inp-email">E-mail</label>
+                <input type="email" id="inp-email">
+
+                <label for="inp-senha">Senha</label>
+                <input type="password" id="inp-senha">
+
+                <label for="inp-confirmar-senha">Confirmar Senha</label>
+                <input type="password" id="inp-confirmar-senha">
+            </div>
+            
+            <button type="submit" id="btn-cadastrar">Cadastrar</button>
+
+            <div id="info-cad">
+                <p>Já possui um cadastro?</p>
+                <a href="../login">Login</a>
+            </div>         
+        </form>
+    </main>
+</body>
+</html>
