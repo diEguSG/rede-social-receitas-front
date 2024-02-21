@@ -9,11 +9,11 @@ span.data_criacao{
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #4b4b4b;
 }
 
 header {
-    background: linear-gradient(to right, #3498db, #2078af); /* Gradiente azul */
+    background: linear-gradient(to right,  #fc782c, #c2351c); 
     color: #fff;
     padding: 15px;
     display: flex;
@@ -22,7 +22,7 @@ header {
     flex-wrap: wrap;
     position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Espaçamento abaixo do header */
+    margin-bottom: 20px; 
 }
 
 header div {
@@ -37,12 +37,12 @@ header div {
 
 header h1 {
     font-size: 28px;
-    letter-spacing: 1px; /* Espaçamento entre letras */
+    letter-spacing: 1px; 
 }
 
 header button {
     background-color: #fff;
-    color: #3498db;
+    color: #e46d29;
     padding: 10px 15px;
     border: none;
     cursor: pointer;
@@ -51,7 +51,7 @@ header button {
 }
 
 header button:hover {
-    background-color: #3498db;
+    background-color: #e68535;
     color: #fff;
 }
 
@@ -60,7 +60,7 @@ header img {
     height: 50px;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-right: 10px; /* Espaçamento à direita da imagem de perfil */
+    margin-right: 10px; 
 }
 header img#img-perfil-usuario {
     max-width: 50px;
@@ -73,9 +73,9 @@ header img#img-perfil-usuario {
 nav {
     width: 100%;
     text-align: center;
-    background: linear-gradient(to right, #2980b9, #1a5276); /* Gradiente azul escuro */
+    background: linear-gradient(to right,  #b65721, #912715);
     padding: 10px 0;
-    margin-top: 10px; /* Adicione uma margem superior aqui */
+    margin-top: 10px; 
 }
 
 nav a {
@@ -93,14 +93,13 @@ main {
     padding: 20px;
 }
 
-/* Restante do código permanece igual */
 
 
 ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    justify-content: space-around; /* Espaçamento entre os cards */
+    justify-content: space-around; 
     flex-wrap: wrap;
     max-width: 1000px;
     margin: 0 auto;
@@ -113,8 +112,8 @@ li {
     max-width: 414px;
     background-color: #fff;
     transition: transform 0.3s;
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para realce */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 li:hover {
@@ -144,7 +143,7 @@ li p {
 }
 
 li button {
-    background-color: #3498db;
+    background-color: #e68535;
     color: #3a3a3a;
     padding: 8px 12px;
     border: none;
@@ -153,7 +152,7 @@ li button {
 }
 
 li button:hover {
-    background-color: #2980b9;
+    background-color: #e68535;
 }
 
 li div {
@@ -188,7 +187,7 @@ li div {
 
 .vermais {
     width: 100%;
-    background-color: #3498db;
+    background-color: #e68535;
     color: #3a3a3a;
     padding: 8px 12px;
     border: none;
@@ -197,7 +196,7 @@ li div {
 }
 
 .vermais:hover {
-    background-color: #2980b9;
+    background-color: #e68535;
     color: #fff;
 }
 
