@@ -42,7 +42,7 @@ header h1 {
 
 header button {
     background-color: #fff;
-    color: #e46d29;
+    color: #7e2e00;
     padding: 10px 15px;
     border: none;
     cursor: pointer;
@@ -51,7 +51,7 @@ header button {
 }
 
 header button:hover {
-    background-color: #e68535;
+    background-color: #7e2e00;
     color: #fff;
 }
 
@@ -143,8 +143,8 @@ li p {
 }
 
 li button {
-    background-color: #e68535;
-    color: #3a3a3a;
+    background-color: #7e2e00;
+    color: #fff;
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -152,7 +152,7 @@ li button {
 }
 
 li button:hover {
-    background-color: #e68535;
+    background-color: #7e2e00;
 }
 
 li div {
@@ -179,16 +179,17 @@ li div {
 .link a {
     display: flex;
     flex-wrap: wrap;
-    color: #3a3a3a;
+    color: #fff;
     gap: 8px;
     justify-content: space-between;
     transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
 }    
 
 .vermais {
     width: 100%;
-    background-color: #e68535;
-    color: #3a3a3a;
+    background-color: #7e2e00;
+    color: #fff;
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -196,7 +197,7 @@ li div {
 }
 
 .vermais:hover {
-    background-color: #e68535;
+    background-color: #7e2e00;
     color: #fff;
 }
 
