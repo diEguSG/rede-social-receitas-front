@@ -45,27 +45,38 @@ async function carregarTelaPerfil(){
     const res_receita_json = await res_receita.json();
     const dados_receita = res_receita_json.receita;
 
-    const div = document.querySelector(".profile-container");
+    const main = document.querySelector("main");
 
-    div.insertAdjacentHTML("afterbegin", `
-        <div class="profile-header">
+    console.log(main)
 
-            <img src="${dados_usuario.imagem_perfil}" alt="Usuário">
+    main.insertAdjacentHTML("afterbegin", `
+        <header>
+            <div class="div-h1">
+                <img src="${dados_usuario.imagem_perfil}" alt="Usuário">
+                
+                <div class="div-infos">
+                    <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1280/1280115.png" alt="Icone Voltar" id="img-icone-voltar" class="icone-voltar">
+                    <p id="p-contador-curtidas">${dados_receita.curtida} Curtidas</p>
+                </div>
+            </div>
 
-            <div class="div-detalhes-usuario">
-                <h1 id="h1-nome-usuario">${dados_usuario.nome}</h1>
-                <p id="p-contador-curtidas">${dados_receita.curtida} Curtidas</p>
+            <nav>
                 ${usuario.outro_perfil == true ? "" : "<button id='btn-editar-perfil'>Editar Perfil</button>"}
                 
                 <div id="icone-bloquear-${dados_usuario.id}">
                     ${admin == 1 && dados_usuario.id_situacao_usuario == 1 ? "<img src='https://cdn-icons-png.flaticon.com/512/25/25173.png' alt='icone-bloquear'>" : ""}
                     ${admin == 1 && dados_usuario.id_situacao_usuario == 2 ? "<button>Desbloquear</button>" : ""}
                 </div>
-                
-            </div>
+            </nav>
+            
+        </header>
 
-        </div>
-        <img src="https://cdn-icons-png.flaticon.com/512/1280/1280115.png" alt="Icone Voltar" id="img-icone-voltar" class="icone-voltar">
+        
+        <h2>Receitas Criadas</h2>
+        <ul id="lista-receitas-criadas">
+        </ul>
+        
     `);
     
     if(!usuario.outro_perfil){
@@ -140,7 +151,7 @@ async function carregarPostagens(){
             ul.insertAdjacentHTML("beforeend",`
                 <li id="${receita.id}">
 
-                    </div>
+                    <div id="div-pai">
                         <h3>
                             ${receita.titulo}
                         </h3>
@@ -153,7 +164,7 @@ async function carregarPostagens(){
                     <img src="${receita.imagem}" alt="Imagem da Receita" id="img-receita">
 
                     <div class="botao" id="div-descricao-${receita.id}">
-                        <button class="link"><a href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
+                        <button class="link"><a target="_blank" href="https://api.whatsapp.com/send?text=[${receita.titulo}]">Compartilhar</a></button>    
                         <button id="btn-curtida-${receita.id}">Curtir <span id="contador-curtida">${receita.curtida}</span></button>                        
                         <button class="vermais" id="btn-ver-mais-${receita.id}">Ver Mais</button>                              
                     </div>
