@@ -16,6 +16,12 @@ img_perfil_usuario.addEventListener('click', () => {
     window.location.href = '../tela_perfil/index.html';
 })
 
+const btn_criar_receita = document.querySelector("btn-criar-receita");
+
+btn_criar_receita.addEventListener('click', () => {
+    criar_receita();
+})
+
 async function curtir(id) {
     localStorage.setItem(`likeCount${id}`, true);
     const body = JSON.stringify({ curtida: true })
@@ -146,3 +152,86 @@ async function getreceita(){
     })
 }
 getreceita()
+
+
+async function criar_receita(){
+    
+    
+    const usuario = {
+        id_usuario:  localStorage.getItem("@id-usuario")
+    }
+
+    const res = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
+    {
+        headers: myHeaders,
+        method: "GET"
+    })
+
+    const res_json = await res.json();
+    const dados_usuario = res_json.usuario;
+
+    const main = document.querySelector("main");
+
+    main.insertAdjacentHTML("afterbegin",`
+        <div class="modal-src">
+            <form method="post" class="modal" id="modal">
+            
+                <div class="div-cabecalho">
+                    <h1 id="h1-atualizar-cadastro">Receita</h1>
+                    <button id="btn-fechar-modal">X</button>
+                </div>
+
+                <div id="div-inputs">
+                    <label for="inp-nome">Título</label>
+                    <input type="text" id="inp-titulo">
+
+                    <label for="inp-telefone">Descrição</label>
+                    <input type="number" id="inp-descricao">
+
+                    <label for="inp-senha">Imagem</label>
+                    <input type="text" id="inp-imagem">
+                </div>
+            
+                <button type="submit" id="btn-publicar">Publicar</button>
+            </form>
+            
+        </div>
+    `)
+
+    const form = document.querySelector("form");
+
+    form.addEventListener('submit', async(event)=>{
+        event.preventDefault();
+
+        if(document.querySelector("#inp-titulo").value == ""){
+            modal_resposta("O título não pode estar vazio!", "error");
+            return true;   
+        }
+
+        if(document.querySelector("#inp-descricao").value == ""){
+            modal_resposta("A receita precisa ter uma descrição!", "error");
+            return true;   
+        }
+
+        const dados = {
+            id_usuario: dados_usuario.id,
+            id_categoria: 1,
+            titulo: document.querySelector("#inp-nome").value,
+            descricao: document.querySelector("#inp-telefone").value.toString()
+        }
+
+        if(document.querySelector("#inp-imagem").value == "" || document.querySelector("#inp-imagem").value != "https" || document.querySelector("#inp-imagem").value != "http"){
+            dados.imagem = "https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" 
+        }
+        else{
+            dados.imagem = document.querySelector("#inp-imagem").value;
+        }
+
+        const res_receita = await fetch(`${baseURL}/receita`,
+        {
+            headers: myHeaders,
+            method: "POST",
+            body: dados
+        })
+    })
+}
