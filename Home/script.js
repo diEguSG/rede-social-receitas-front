@@ -1,5 +1,6 @@
 import {myHeaders} from "../headers.js"
 import {baseURL} from "../conexao_servidor.js";
+import {modal_resposta} from "../modal.js";
 
 const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
@@ -16,7 +17,7 @@ img_perfil_usuario.addEventListener('click', () => {
     window.location.href = '../tela_perfil/index.html';
 })
 
-const btn_criar_receita = document.querySelector("btn-criar-receita");
+const btn_criar_receita = document.querySelector("#btn-criar-receita");
 
 btn_criar_receita.addEventListener('click', () => {
     criar_receita();
@@ -85,7 +86,7 @@ async function getreceita(){
                 <img src="${element.imagem}" alt="Imagem da Receita ${element.titulo}">
                 <div class="botao" id="desc${element.id}">
                 <button class="link"><a target="_blank" href="https://api.whatsapp.com/send?text=[${element.titulo}]">Compartilhar</a></button>
-                <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>
+                <button id="likeBtn${element.id}">Curtir <span id="likeCount">${element.curtida}</span></button>
                 <button class="vermais" id="ver${element.id}">Ver Mais</button>
                 </div>
                 </li>`)
@@ -177,19 +178,19 @@ async function criar_receita(){
             <form method="post" class="modal" id="modal">
             
                 <div class="div-cabecalho">
-                    <h1 id="h1-atualizar-cadastro">Receita</h1>
+                    <h1 id="h1-criar-receita">Receita</h1>
                     <button id="btn-fechar-modal">X</button>
                 </div>
 
                 <div id="div-inputs">
-                    <label for="inp-nome">Título</label>
+                    <label for="inp-titulo">Título</label>
                     <input type="text" id="inp-titulo">
 
-                    <label for="inp-telefone">Descrição</label>
-                    <input type="number" id="inp-descricao">
+                    <label for="txtarea-descricao">Descrição</label>
+                    <textarea name="" id="txtarea-descricao" cols="30" rows="10"></textarea>
 
-                    <label for="inp-senha">Imagem</label>
-                    <input type="text" id="inp-imagem">
+                    <label for="inp-imagem">Imagem</label>
+                    <input type="text" id="inp-imagem" placeholder="URL">
                 </div>
             
                 <button type="submit" id="btn-publicar">Publicar</button>
@@ -208,7 +209,7 @@ async function criar_receita(){
             return true;   
         }
 
-        if(document.querySelector("#inp-descricao").value == ""){
+        if(document.querySelector("#txtarea-descricao").value == ""){
             modal_resposta("A receita precisa ter uma descrição!", "error");
             return true;   
         }
@@ -216,22 +217,36 @@ async function criar_receita(){
         const dados = {
             id_usuario: dados_usuario.id,
             id_categoria: 1,
-            titulo: document.querySelector("#inp-nome").value,
-            descricao: document.querySelector("#inp-telefone").value.toString()
+            titulo: document.querySelector("#inp-titulo").value,
+            descricao: document.querySelector("#txtarea-descricao").value.toString()
         }
 
         if(document.querySelector("#inp-imagem").value == "" || document.querySelector("#inp-imagem").value != "https" || document.querySelector("#inp-imagem").value != "http"){
-            dados.imagem = "https://i.pinimg.com/550x/fd/b0/50/fdb050d4b24a2d0afacbf934113b0112.jpg" 
+            dados.imagem = "https://www.buritama.sp.leg.br/imagens/parlamentares-2013-2016/sem-foto.jpg/image" 
         }
         else{
             dados.imagem = document.querySelector("#inp-imagem").value;
         }
 
+        const dados_json = JSON.stringify(dados)
+
         const res_receita = await fetch(`${baseURL}/receita`,
         {
             headers: myHeaders,
             method: "POST",
-            body: dados
+            body: dados_json
         })
+
+        if(res_receita.status == 200){
+            getreceita();
+        }
+    })
+
+    const div = document.querySelector(".modal-src")
+    const btn_fechar_modal = document.querySelector("#btn-fechar-modal");
+
+    btn_fechar_modal.addEventListener('click', ()=>{
+        main.removeChild(div)
+        getreceita();
     })
 }
