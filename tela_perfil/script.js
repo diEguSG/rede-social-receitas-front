@@ -26,7 +26,7 @@ async function carregarTelaPerfil(){
         usuario.outro_perfil = false; 
     }
 
-    console.log(usuario);
+ 
 
     const res_usuario = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
     {
@@ -47,7 +47,7 @@ async function carregarTelaPerfil(){
 
     const main = document.querySelector("main");
 
-    console.log(main)
+
 
     main.insertAdjacentHTML("afterbegin", `
         <header>

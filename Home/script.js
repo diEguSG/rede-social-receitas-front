@@ -221,7 +221,7 @@ async function criar_receita(){
             descricao: document.querySelector("#txtarea-descricao").value.toString()
         }
 
-        if(document.querySelector("#inp-imagem").value == "" || document.querySelector("#inp-imagem").value != "https" || document.querySelector("#inp-imagem").value != "http"){
+        if(document.querySelector("#inp-imagem").value == ""){
             dados.imagem = "https://www.buritama.sp.leg.br/imagens/parlamentares-2013-2016/sem-foto.jpg/image" 
         }
         else{
@@ -238,7 +238,10 @@ async function criar_receita(){
         })
 
         if(res_receita.status == 200){
-            getreceita();
+           modal_resposta("Receita criada com sucesso!", "ok")
+            setTimeout(()=>{
+            window.location.reload();
+        }, 2000)          
         }
     })
 
