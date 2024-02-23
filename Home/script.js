@@ -85,7 +85,7 @@ async function getreceita(){
                 </div>
                 <img src="${element.imagem}" alt="Imagem da Receita ${element.titulo}">
                 <div class="botao" id="desc${element.id}">
-                <button class="link"><a target="_blank" href="https://api.whatsapp.com/send?text=[${element.titulo}]">Compartilhar</a></button>
+                <button class="link"><a target="_blank" href="https://api.whatsapp.com/send?text=[https://www.tudogostoso.com.br/receita/2477-pastel-de-forno.html]">Compartilhar</a></button>
                 <button id="likeBtn${element.id}">Curtir <span id="likeCount">${element.curtida}</span></button>
                 <button class="vermais" id="ver${element.id}">Ver Mais</button>
                 </div>
