@@ -133,12 +133,6 @@ li p {
     margin-top: 10px;
     text-align: center;
 }
-.preview{
-    height: 100px;
-    padding: 0;
-    width: 100%;
-    overflow: hidden;
-}
 
 li button {
     background-color: #7e2e00;
