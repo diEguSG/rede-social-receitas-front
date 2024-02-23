@@ -1,5 +1,6 @@
 import {myHeaders} from "../headers.js"
 import {baseURL} from "../conexao_servidor.js";
+import {modal_resposta} from "../modal.js";
 
 const token = localStorage.getItem("@token-usuario");
 const id_usuario = localStorage.getItem("@id-usuario");
@@ -14,6 +15,12 @@ const img_perfil_usuario = document.querySelector("#img-perfil-usuario");
 img_perfil_usuario.addEventListener('click', () => {
     localStorage.setItem("@seleciona-id-usuario-receita", id_usuario);
     window.location.href = '../tela_perfil/index.html';
+})
+
+const btn_criar_receita = document.querySelector("#btn-criar-receita");
+
+btn_criar_receita.addEventListener('click', () => {
+    criar_receita();
 })
 
 async function curtir(id) {
@@ -79,7 +86,7 @@ async function getreceita(){
                 <img src="${element.imagem}" alt="Imagem da Receita ${element.titulo}">
                 <div class="botao" id="desc${element.id}">
                 <button class="link"><a target="_blank" href="https://api.whatsapp.com/send?text=[${element.titulo}]">Compartilhar</a></button>
-                <button id="likeBtn${element.id}">Curtir<span id="likeCount">${element.curtida}</span></button>
+                <button id="likeBtn${element.id}">Curtir <span id="likeCount">${element.curtida}</span></button>
                 <button class="vermais" id="ver${element.id}">Ver Mais</button>
                 </div>
                 </li>`)
@@ -146,3 +153,103 @@ async function getreceita(){
     })
 }
 getreceita()
+
+
+async function criar_receita(){
+    
+    
+    const usuario = {
+        id_usuario:  localStorage.getItem("@id-usuario")
+    }
+
+    const res = await fetch(`${baseURL}/cadastro/${usuario.id_usuario}`,
+    {
+        headers: myHeaders,
+        method: "GET"
+    })
+
+    const res_json = await res.json();
+    const dados_usuario = res_json.usuario;
+
+    const main = document.querySelector("main");
+
+    main.insertAdjacentHTML("afterbegin",`
+        <div class="modal-src">
+            <form method="post" class="modal" id="modal">
+            
+                <div class="div-cabecalho">
+                    <h1 id="h1-criar-receita">Receita</h1>
+                    <button id="btn-fechar-modal">X</button>
+                </div>
+
+                <div id="div-inputs">
+                    <label for="inp-titulo">Título</label>
+                    <input type="text" id="inp-titulo">
+
+                    <label for="txtarea-descricao">Descrição</label>
+                    <textarea name="" id="txtarea-descricao" cols="30" rows="10"></textarea>
+
+                    <label for="inp-imagem">Imagem</label>
+                    <input type="text" id="inp-imagem" placeholder="URL">
+                </div>
+            
+                <button type="submit" id="btn-publicar">Publicar</button>
+            </form>
+            
+        </div>
+    `)
+
+    const form = document.querySelector("form");
+
+    form.addEventListener('submit', async(event)=>{
+        event.preventDefault();
+
+        if(document.querySelector("#inp-titulo").value == ""){
+            modal_resposta("O título não pode estar vazio!", "error");
+            return true;   
+        }
+
+        if(document.querySelector("#txtarea-descricao").value == ""){
+            modal_resposta("A receita precisa ter uma descrição!", "error");
+            return true;   
+        }
+
+        const dados = {
+            id_usuario: dados_usuario.id,
+            id_categoria: 1,
+            titulo: document.querySelector("#inp-titulo").value,
+            descricao: document.querySelector("#txtarea-descricao").value.toString()
+        }
+
+        if(document.querySelector("#inp-imagem").value == ""){
+            dados.imagem = "https://www.buritama.sp.leg.br/imagens/parlamentares-2013-2016/sem-foto.jpg/image" 
+        }
+        else{
+            dados.imagem = document.querySelector("#inp-imagem").value;
+        }
+
+        const dados_json = JSON.stringify(dados)
+
+        const res_receita = await fetch(`${baseURL}/receita`,
+        {
+            headers: myHeaders,
+            method: "POST",
+            body: dados_json
+        })
+
+        if(res_receita.status == 200){
+           modal_resposta("Receita criada com sucesso!", "ok")
+            setTimeout(()=>{
+            window.location.reload();
+        }, 2000)          
+        }
+    })
+
+    const div = document.querySelector(".modal-src")
+    const btn_fechar_modal = document.querySelector("#btn-fechar-modal");
+
+    btn_fechar_modal.addEventListener('click', ()=>{
+        main.removeChild(div)
+        getreceita();
+    })
+}

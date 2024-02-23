@@ -37,7 +37,10 @@ export async function modal_atualizar_cadastro(){
         <div class="modal-src">
             <form method="post" class="modal" id="modal">
             
-                <h1 id="h1-atualizar-cadastro">Atualizar Cadastro</h1>
+                <div class="div-cabecalho">
+                    <h1 id="h1-atualizar-cadastro">Atualizar Cadastro</h1>
+                    <button id="btn-fechar-modal">X</button>
+                </div>
 
                 <div id="div-inputs">
                     <label for="inp-nome">Nome</label>
@@ -53,7 +56,7 @@ export async function modal_atualizar_cadastro(){
             
                 <button type="submit" id="btn-cadastrar">Atualizar</button>
             </form>
-            <button id="btn-fechar-modal">X</button>
+            
         </div>
     `)
 

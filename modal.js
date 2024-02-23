@@ -48,7 +48,7 @@ export function modal_confirmar_exclusao(id, situacao){
     body.insertAdjacentHTML("afterbegin",`
         <div class="modal-src-resposta">
             <div class="modal-${situacao}" id="modal">
-                <p>Deseja realmente prosseguir com a exlcusão?</p>
+                <p>Deseja realmente prosseguir com a exclusão?</p>
                 <div>
                     <button id="btn-confirmar-exclusao">Sim</button>
                     <button id="btn-cancelar-exclusao">Não</button>
